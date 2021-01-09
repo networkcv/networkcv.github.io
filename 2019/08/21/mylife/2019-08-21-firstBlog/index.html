@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Network Cavalry">
+
+
+
+
+
+<title>First Blog | NetworkCavalry</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">First Blog</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Life/">Life</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是我的第一个博客，从开始搭建到完成用了近两天的时间，其中遇到了很多问题，解决之后回过头来看还是挺简单的。</p>
+<p>搭建这个博客的初衷是   <font color=dodgerblue><strong>记录学习    技术沉淀     分享自己的生活</strong> </font></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="技术实现"><a href="#技术实现" class="headerlink" title="技术实现"></a>技术实现</h2><p><font color=green>TODO</font></p>
+<h2 id="问题及解决"><a href="#问题及解决" class="headerlink" title="问题及解决"></a>问题及解决</h2><p><font color=green>TODO</font></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><h2 id="回顾博客的诞生"><a href="#回顾博客的诞生" class="headerlink" title="回顾博客的诞生"></a>回顾博客的诞生</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回想起来这个博客诞生的莫名其妙又顺理成章，起由是工作上最近要使用git，之前一直用svn，于是打算学习一波，在学习Git常用命令中需要记笔记，以往都是用txt文件，通过换行来区分，<br>这种方式虽然高效但是可读性不是很好，这次突然想换个其他的方式来试试，首先就想到了MarkDown，立马去学习MarkDown的基本语法。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成git学习和笔记后，觉得markdown真的很赞，后悔这么晚才接触，没试过的朋友可以试试，然后打算练习git命令，就在github上建了个仓库push上去，顺便也将其他的学习笔记统统提交上去，<br>做成了一个技术笔记的仓库。但是浏览起来不够直观，于是萌生了建一个博客的想法，刚好可以使用Github Pages提供的免费服务，于是就有了这个博客，在写到这里的时候临时决定。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了记录学习和技术沉淀外，再加上 分享自己的生活，给技术加上温度。</p>
+<h2 id="博客之外的故事"><a href="#博客之外的故事" class="headerlink" title="博客之外的故事"></a>博客之外的故事</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在大学里就接触过Github和个人博客，当时可能忙着打王者荣耀，对学习不那么上心，所以就随便注册了个账号，有一次朋友过生日，想送个别致的礼物。于是乎就打算用程序员的方式祝她生日快乐——建几个静态页面、写点JS、再搞个好看的背景、配上音乐。这可能是我当时想到最高逼格的礼物了。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大一的时候有学过一些html和js基础，不过写出来巨丑，自己都看不下去，于是就去网上扒了一些例子拿下来改最后的成品差不多是首页类似于黑客帝国的那种绿色代码雨，几秒后跳到一个全屏酷炫的登录系统页面,让她输入生日和名字后校验，通过后展示一个类似于下图的页面，附带烟花特效，加载时播放音乐。</p>
+<p><a target="_blank" rel="noopener" href="https://www.17sucai.com/pins/demo-show?id=26641">演示链接</a></p>
+<p><img src="http://pic.networkcv.top//network/20200503/NPQxFr9YP5I5.jpg?imageslim" alt="mark"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Life/"># Life</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/01/09/hello-world/">Hello World</a>
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Network Cavalry | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
