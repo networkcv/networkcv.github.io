@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>系统分析师：13_系统实施与系统维护 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">系统分析师：13_系统实施与系统维护</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/">系统分析师</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="系统实施系统"><a href="#系统实施系统" class="headerlink" title="系统实施系统"></a>系统实施系统</h1><h1 id="测试原则和方法"><a href="#测试原则和方法" class="headerlink" title="测试原则和方法"></a>测试原则和方法</h1><p>系统测试是<strong>为了发现错误而执行程序的过程，成功的测试是发现了至今尚末发现的错误的测试。</strong></p>
+<p><strong>测试原则：</strong></p>
+<ul>
+<li><p>应尽早并不断的进行测试；</p>
+</li>
+<li><p>测试工作应该避免由原开发软件的人或小组承担；</p>
+</li>
+<li><p>在设计测试方案时，不仅要确定输入数据，而且要根据系统功能确定预期的输出结果；</p>
+</li>
+<li><p>今既包含有效、合理的测试用例，也包含不合理、失效的用例；</p>
+</li>
+<li><p>检验程序是否做了该做的事，且是否做了不该做的事；</p>
+</li>
+<li><p>严格按照测试计划进行；</p>
+</li>
+<li><p>妥善保存测试计划和测试用例；</p>
+</li>
+<li><p>测试用例可以重复使用或追加测试。</p>
+</li>
+</ul>
+<p><strong>软件测试方法可分为静态测试和动态测试。</strong>区别是测试程序是否在运行。</p>
+<p>静态测试：指被测试程序<strong>不在机器上运行</strong>，而采用<strong>人工检测和计算机辅助静态分析的手段</strong>对程序进行检测，包括对文档的静态测试和对代码的静态测试。</p>
+<p>对文档的静态测试主要以检查单的形式进行，而对代码的静态测试，包括<strong>桌前检查、代码审查、代码走查</strong>的方式。使用这种方法能够有效地发现30%-70%的逻辑设计和编码错误。</p>
+<p>动态测试：指在计算机上<strong>实际运行程序</strong>进行软件测试，一般采用白盒测试和黑盒测试方法。</p>
+<p>黑盒测试法：<strong>功能性测试</strong>，不了解软件代码结构，根据功能设计用例，测试软件功能。</p>
+<p>白盒测试法：<strong>结构性测试</strong>，明确代码流程，根据代码逻辑设计用例，进行用例覆盖。</p>
+<h1 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h1><p>正常的测试流程阶段：</p>
+<ol>
+<li><p><strong>单元测试</strong>：也称为模块测试，测试的对象是可独立编译或汇编的程序模块、 软件构件或OO软件中的类（统称为模块），测试依据是软件详细设计说明书。（面向对象设计中是类，面向结构设计中是模块</p>
+</li>
+<li><p><strong>集成测试</strong>：目的是检查模块之间，以及模块和已集成的软件之间的接口关系，并验证已集成的软件是否符合设计要求。测试依据是软件概要设计文档。</p>
+</li>
+<li><p><strong>系统测试</strong>：<strong>测试对象是完整的、集成的计算机系统</strong>；测试的目的是在真实系统工作环境下，验证完成的软件配置项能否和系统正确连接，并满足系统/子系统设计文档和软件开发合同规定的要求。测试依据是用户需求或开发合同。</p>
+<p>主要内容包括<strong>功能测试、健壮性测试、性能测试、用户界面测试、安全性测试、</strong> 安装与反安装测试等，其中，最重要的工作是进行功能测试与性能测试。功能测试主要采用黑盒测试方法；性能测试主要指标有响应时间、吞吐量、并发用户数和资源利用率等。</p>
+</li>
+<li><p><strong>确认测试</strong>：主要用于验证软件的功能、性能和其他特性是否与用户需求一致。根据用户的参与程度，通常包括以下类型：</p>
+<ul>
+<li><strong>内部确认测试</strong>：主要由软件开发组织内部按照需求规格说明书（SRS）进行测试。</li>
+<li><strong>Alpha测试：用户在开发环境下进行测试。</strong></li>
+<li><strong>Beta测试：用户在实际使用环境下进行测试，通过改测试后，产品才能交付用户。</strong></li>
+<li><strong>验收测试</strong>：针对SRS，在交付前以用户为主进行的测试。其测试对象为完整的、 集成的计算机系统。验收测试的目的是，在真实的用户工作环境下，检验软件系统是否满足开发技术合同或SRS。验收测试的结论是用户确定是否接收该软件的主要依据。除应满足一般测试的准入条件外，在进行验收测试之前，应确认被测软件系统已通过系统测试。</li>
+</ul>
+</li>
+</ol>
+<p>还有其他测试阶段：</p>
+<p><strong>配置项测试</strong>：测试对象是<strong>软件配置项</strong>，测试目的是检验软件配置项与SRS 的一致性。测试的依据是SRS。在此之间，应确认被测软件配置项已通过单元测试和集成测试。</p>
+<p><strong>回归测试</strong>：测试目的是<strong>测试软件变更之后，变更部分的正确性和对变更需求的符合性，以及软件原有的、正确的功能、性能和其他规定的要求的不损害性。</strong></p>
+<h1 id="测试用例设计"><a href="#测试用例设计" class="headerlink" title="测试用例设计"></a>测试用例设计</h1><p><strong>黑盒测试用例</strong>：将程序看做一个黑盒子，只知道输入输出，不知道内部代码， 由此设计出测试用例，分为下面几类：</p>
+<p><strong>等价类划分</strong>：把所有的数据按照某种特性进行归类，而后在每类的数据里选取一个即可。等价类测试用例的设计原则：<strong>设计一个新的测试用例，使其尽可能多地覆盖尚未被覆盖的有效等价类</strong>，重复这一步，直到所有的有效等价类都被覆盖为止；<strong>设计一个新的测试用例，使其仅覆盖一个尚未被覆盖的无效等价类（因为如果两个的话，就不知道哪个导致的错误</strong>，重复这一步，直到所有的无效等价类都被覆盖为止。</p>
+<p><strong>边界值划分</strong>：将每类的边界值作为测试用例，边界值一般为<strong>范围的两端值以及在此范围之外的与此范围间隔最小的两个值</strong>，如年龄范围为0-150，边界值为 0,150，-1,151四个。</p>
+<p>错误推测：没有固定的方法，凭经验而言，来推测有可能产生问题的地方， 作为测试用例进行测试。</p>
+<p>因果图：由一个结果来反推原因的方法，具体结果具体分析，没有固定方法。</p>
+<p><strong>白盒测试用例</strong>：知道程序的代码逻辑，按照程序的代码语句，来设计覆盖代码分支的测试用例，覆盖级别从低至高分为下面几种：</p>
+<p>（1）<strong>语句覆盖</strong>SC：<strong>逻辑代码中的所有语句都要被执行一遍，覆盖层级最低</strong>，因为执行了所有的语句，不代表执行了所有的条件判断的分支。</p>
+<p>（2）<strong>判定覆盖</strong>DC：逻辑代码中的所有判断语句的条件的真假分支都要覆盖一次</p>
+<p>（3）<strong>条件覆盖</strong>CC：针对每一个判断条件内的每一个独立条件都要执行一遍真和假。（一个判定里可能会有多个判断条件 </p>
+<p>（4）<strong>条件判定组合覆盖</strong>CDC：同时满足判定覆盖和条件覆盖。</p>
+<p>（5）<strong>路径覆盖</strong>：逻辑代码中的所有可行路径都覆盖了，覆盖层级最高。（常和语句覆盖一起考，路径覆盖类似于群举所有语句覆盖，路径覆盖也是一种比较强的覆盖，但未必考虑判定条件结果的组合，并不能代替条件判定组合覆盖。</p>
+<h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><h1 id="软件度量"><a href="#软件度量" class="headerlink" title="*软件度量"></a>*软件度量</h1><p><strong>软件的两种属性：外部属性指面向管理者和用户的属性，可直接测量，一般为性能指标。内部属性指软件产品本身的的属性，如可靠性等，只能间接测量。</strong></p>
+<p><strong>McCabe度量法</strong>：又称<strong>环路复杂度</strong>，假设有向图中有<strong>向边数为m，节点数为n， 则此有向图的环路复杂度为m-n+2=（边数 - 顶点数+2 ）</strong></p>
+<p>注意m和n代表的含义不能混淆，可以用一个最简单的环路来做特殊值记忆此公式，另外，针对一个程序流程图，每一个分支边（连线）就是一条有向边，每一条语句（语句框）就是一个顶点。</p>
+<h1 id="系统运行和维护"><a href="#系统运行和维护" class="headerlink" title="系统运行和维护"></a>系统运行和维护</h1><h1 id="遗留系统的演化策略"><a href="#遗留系统的演化策略" class="headerlink" title="*遗留系统的演化策略"></a>*遗留系统的演化策略</h1><p>遗留系统是指任何基本上不能进行修改和演化以满足新的变化了的业务需求的信息系统，它通常具有以下特点：</p>
+<p>（1）系统虽然完成企业中许多重要的业务管理工作，但仍然不能完全满足要求。一般实现业务处理电子化及部分企业管理功能，很少涉及经营决策。</p>
+<p>（2）系统在性能上已经落后，采用的技术已经过时。例如， 多采用主机/终端形式或小型机系统，软件使用汇编语言或第三代程序设计语言的早期版本开发，使用文件系统而不是数据库。</p>
+<p>（3）通常是大型的软件系统，已经融入企业的业务运作和决策管理机制之中，维护工作十分困难。</p>
+<p>（4）没有使用现代信息系统建设方法进行管理和开发，现在基本上已经没有文档，很难理解。</p>
+<p><img src="/13_%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%96%BD%E4%B8%8E%E7%BB%B4%E6%8A%A4/image-20240324124538685.png" alt="image-20240324124538685"></p>
+<p><strong>改造策略</strong>：改造包括<strong>系统功能的增强</strong>和<strong>数据模型的改造</strong>两个方面。<strong>系统功能的增强</strong>是指在<strong>原有系统的基础上增加新的应用要求</strong>，对遗留系统本身不做改变；<strong>数据模型的改造</strong>是指<strong>将遗留系统的旧的数据模型向新的数据模型的转化</strong>。</p>
+<p><strong>继承策略</strong>：对这种遗留系统的演化策略为继承。在开发新系统时<strong>，需要完全兼容遗留系统的功能模型和数据模型</strong>。为了保证业务的连续性，新老系统并行运行一段时间，再逐渐切换到新系统上运行。</p>
+<h1 id="系统转换"><a href="#系统转换" class="headerlink" title="系统转换"></a>系统转换</h1><p>系统转换是指<strong>新系统开发完毕， 投入运行，取代现有系统的过程</strong>，需要考虑多方面的问题，以实现与老系统的交接，有以下三种转换计划：</p>
+<ol>
+<li><p><strong>直接转换</strong>：<strong>现有系统被新系统直接取代了</strong>，风险很大，适用于新系统不复杂， 或者现有系统已经不能使用的情况。优点是节省成本</p>
+</li>
+<li><p><strong>并行转换</strong>：<strong>新系统和老系统并行工作一段时间</strong>，新系统经过试运行后再取代， 若新系统在试运行过程中有问题， 也不影响现有系统的运行，风险极小，在试运行过程中还可以比较新老系统的性能，适用于大型系统。缺点是耗费人力和时间资源，难以控制两个系统间的数据转换。</p>
+</li>
+<li><p><strong>分段转换</strong>：<strong>分期分批逐步转换</strong>，是直接和并行转换的集合，<strong>将大型系统分为多个子系统</strong>，依次试运行每个子系统，成熟一个子系统，就转换一个子系统。同样适用于大型项目，只是更耗时，而且现有系统和新系统间混合使用，需要协调好接口等问题。</p>
+</li>
+</ol>
+<h1 id="数据转换与迁移"><a href="#数据转换与迁移" class="headerlink" title="数据转换与迁移"></a>数据转换与迁移</h1><p>将数据从旧数据库迋移到新数据库中。有三种方法：</p>
+<ol>
+<li><strong>系统切换前 通过工具迁移</strong></li>
+<li><strong>系统切换前 采用手工录入</strong></li>
+<li><strong>系统切换后 通过新系统生成。</strong></li>
+</ol>
+<h1 id="系统维护"><a href="#系统维护" class="headerlink" title="系统维护"></a>系统维护</h1><p>系统的<strong>可维护性</strong>可以定义为<strong>维护人员理解、改正、改动和改进这个软件的难易程度</strong>，其评价指标如下：</p>
+<p>（1）<strong>易分析性</strong>。软件产品诊断软件中的缺陷或失效原因或识别待修改部分的能力。</p>
+<p>（2）<strong>易改变性</strong>。软件产品使指定的修改可以被实现的能力，实现包括编码、设计和文档的更改。</p>
+<p>（3） <strong>稳定性</strong>。软件产品避免由于软件修改而造成意外结果的能力。</p>
+<p>（4）<strong>易测试性</strong>。软件产品使已修改软件能被确认的能力。</p>
+<p>系统维护包括<strong>硬件维护、软件维护和数据维护</strong>，其中<strong>软件维护类型如下</strong>：</p>
+<p><strong>正确性维护</strong>：发现了bug而进行的修改。</p>
+<p><strong>适应性维护</strong>：由于外部环境发生了改变，被动进行的对软件的修改和升级。</p>
+<p><strong>完善性维护</strong>：基于用户主动对软件提出更多的需求，修改软件，增加更多的功能，使其比之前的软件功能、性能更高，更加完善。</p>
+<p><strong>预防性维护</strong>：对未来可能发生的bug进行预防性的修改。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/"># 系统分析师</a>
+                    
+                        <a href="/tags/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7/"># 软考高级</a>
+                    
+                        <a href="/tags/%E8%80%83%E8%AF%81/"># 考证</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/14_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">系统分析师：14_项目管理</a>
+            
+            
+            <a class="next" rel="next" href="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统分析师：12_系统设计</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <!-- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+    <div class="copyright">
+        <!-- <span> welcome~</a></span> -->
+    </div>
+    <!-- 访问统计 -->
+    <!-- <div class="powered-by">
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+            welcome~ <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div> -->
+</footer>
+
+    </div>
+</body>
+</html>

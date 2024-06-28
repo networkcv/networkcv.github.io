@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>系统分析师：10_系统规划 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">系统分析师：10_系统规划</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/">系统分析师</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="系统规划"><a href="#系统规划" class="headerlink" title="系统规划"></a>系统规划</h1><p>任务是对组织的环境、目标及现行系统的状况进行<strong>初步调查</strong>，根据组织目标和发展战略确定信息系统的发展战略，<strong>对建设新系统的需求做出分析和预测</strong>，同时考虑建设新系统所受的各种约束，研究建设新系统的必要性和可能性。根据需要与可能，给出制建系统的备选方案。</p>
+<p><strong>输出：可行性研究报告、系统设计任务书。</strong></p>
+<h1 id="系统规划步骤"><a href="#系统规划步骤" class="headerlink" title="系统规划步骤"></a>系统规划步骤</h1><p><strong>系统规划 不只是可行性分析，还有系统的初步建设方案，产出系统设计任务书。</strong></p>
+<ol>
+<li><strong>对现有系统进行初步调查</strong>。根据企业战略和发展目标，从类似企业和本企业内部收集各种信息，站在管理层的高度观察企业的现状，分析现有系统的运行状况。</li>
+<li><strong>分析和确定系统目标</strong>。系统目标应包括服务的质量和范围、政策、组织和人员等，它不仅包括信息系统的目标，还要反映整个企业的目标。</li>
+<li><strong>分析子系统的组成和基本功能</strong>。自顶向下对系统进行划分，并且详细说明各个子系统应该实现的功能。</li>
+<li><strong>拟定系统的实施方案</strong>。可以对子系统的优先级进行设定，以便确定子系统的开发顺序。</li>
+<li><strong>进行系统的可行性研究</strong>，<strong>编写可行性研究报告</strong>，召开可行性论证会。</li>
+<li><strong>制订系统建设方案</strong>。对可行性研究报告中提出的各项技术指标进行分析、 比较，落实各项假设的前提条件，制订系统建设方案，并根据该方案及其实施计划<strong>编写成系统设计任务书</strong>。系统设计任务书经上级主管部门批准后，<strong>正式作为系统建设的依据</strong>。</li>
+</ol>
+<h1 id="项目机会选择"><a href="#项目机会选择" class="headerlink" title="项目机会选择"></a>项目机会选择</h1><ol>
+<li><p><strong>项目的立项目标和动机</strong>。进行基础研究；进行应用开发；提供技术服务；产品的使用者。</p>
+</li>
+<li><p><strong>项目立项的价值判断</strong>。</p>
+</li>
+<li><p><strong>项目的选择和确定</strong>。选择有核心价值的项目；评估所选择的项目；项目优先级排序；评估项目的多种实施方式；平衡地选择合适的方案。</p>
+</li>
+<li><p><strong>初步调查</strong>。</p>
+<ul>
+<li><p>目标：掌握用户的概况，从整体上了解企业信息系统建设的现状，对用户提出的各种问题和初始需求进行识别，明确系统的初步目标，为可行性研究提供工作基础。（<strong>了解企业的现状，了解用户的需求</strong></p>
+</li>
+<li><p>方式：最佳方式是与企业高层管理人员座谈，通过座谈了解企业高层对信息系统所设定的目标和系统边界，计划的资金投入和对工期的要求。</p>
+</li>
+<li><p>内容：初步需求分析，企业基本状况，管理方式和基础数据管理状况，现有系统状况。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>可行性分析</strong>。</p>
+</li>
+</ol>
+<h1 id="可行性分析"><a href="#可行性分析" class="headerlink" title="可行性分析"></a>可行性分析</h1><p>可行性是指在企业当前的条件下，是否有必要建设新系统，以及建设新系统的工作是否具备必要的条件。也就是说，<strong>可行性包括两个方面：必要性和可能性。</strong></p>
+<p><strong>可行性研究的步骤：</strong></p>
+<p>1、复查系统目标和规模<br>2、分析现有系统<br>3、导出新系统的高层逻辑模型<br>4、用户复核<br>5、提出并评价解决方案<br>6、 确定最终推荐的解决方案<br>7、草拟开发计划<br>8、编制和提交可行性分析报告</p>
+<p>在信息系统建设项目中，可行性研究通常从 <strong>经济可行性、技术可行性、法律可行性和用户使用可行性（细分为管理可行性和运行可行性）</strong> 四个方面来进行分析，其中<strong>经济可行性通常被认为是项目的底线。</strong></p>
+<h2 id="经济可行性"><a href="#经济可行性" class="headerlink" title="经济可行性"></a>经济可行性</h2><p><strong>也称为投资收益分析或成本效益分析</strong>，主要评估项目的建设成本、 运行成本和项目建成后可能的经济收益。</p>
+<p>要注意的是，在系统开发初期，由于用户需求和候选系统方案还没有确定，成本不可能得到准确的估算。因此，此时的经济可行性分析<strong>只能大致估算系统的成本和收益，判断信息系统的建设是否值得。</strong></p>
+<h2 id="技术可行性"><a href="#技术可行性" class="headerlink" title="技术可行性"></a>技术可行性</h2><p><strong>也称为技术风险分析</strong>，研究的对象是信息系统需要实现的功能和性能，以及技术能力约束。技术可行性主要通过考虑以下问题来进行论证：</p>
+<p>（1）<strong>技术</strong>：现有的技术能力和信息技术的发展现状是否足以支持系统目标的实现。</p>
+<p>（2）<strong>资源</strong>：现有的资源（例如，掌握技术的员工、企业的技术积累、构件库、软硬件条件等）是否足以支持项目的实施。</p>
+<p>（3）<strong>目标</strong>：由于在可行性研究阶段，项目的目标是比较模糊的，因此技术可行性最好与项目功能、性能和约束的定义同时进行。在可行性研究阶段，调整项目目标和选择可行的技术体系都是可以的，而一旦项目进入开发阶段，任何调整都意味着更多的开销。</p>
+<p>需要特别指出的是，技术可行性绝不仅仅是论证在技术手段上是否可实现，实际上包含了在<strong>当前资源条件下的技术可行性。</strong>也就是能调用的资源范围内的可行性分析。</p>
+<h2 id="法律可行性"><a href="#法律可行性" class="headerlink" title="法律可行性"></a>法律可行性</h2><p><strong>也称为社会可行性</strong>，具有比较广泛的内容，它需要从政策、法律、道德、制度等社会因素来论证信息系统建设的现实性。</p>
+<h2 id="用户使用可行性"><a href="#用户使用可行性" class="headerlink" title="用户使用可行性"></a>用户使用可行性</h2><p><strong>也称为执行可行性</strong>，是从信息系统用户的角度来评估系统的可行性，包括企业的行政管理和工作制度、使用人员的素质和培训要求等， 可以细分为管理可行性和运行可行性。</p>
+<p>（1）<strong>管理可行性</strong>。管理可行性是指从企业管理上分析系统建设可行性。主管领导不支持的项目一般会失败，中高层管理人员的抵触情绪很大，就有必要等一等，先积极做好思想工作，创造条件。另外，还要考虑管理方法是否科学，相应的管理制度改革的时机是否成熟，规章制度是否齐全等。</p>
+<p>（2）<strong>运行可行性</strong>。运行可行性也称为操作可行性，是指分析和测定信息系统在确定环境中能够有效工作，并被用户方便使用的程度和能力。例如，ERP系统建成后的数据采集和数据质量问题，企业工作人员没有足够的IT技能等。</p>
+<h1 id="成本效益分析"><a href="#成本效益分析" class="headerlink" title="成本效益分析"></a>成本效益分析</h1><blockquote>
+<p><strong>分析的是经济可行性</strong></p>
+</blockquote>
+<p><strong>按照投资时间分类：</strong></p>
+<p>（1）<strong>基础建设投资</strong>。例如，房屋和设施、办公设备、平台软件、必须的工具软件等购置成本。基础建设投资既可以是一次性投资，也可以是分期付款。</p>
+<p>（2）<strong>其他一次性投资</strong>。例如，研究咨询成本、调研费、管理成本、培训费、差旅费等，以及其他一次性杂费。</p>
+<p>（3）<strong>其他非一次性投资</strong>。主要是指系统的运行与维护成本。例如，设备租金和定期维护成本、定期消耗品支出、通信费、人员工资与奖金、房屋租金、公共设施维护等，以及其他经常性的支出项目。</p>
+<p><strong>按照成本性态分类：</strong></p>
+<p>（1）<strong>固定成本</strong>。固定成本是指其总额在一定期间和一定业务量范围内，<strong>不受业务量变动的影响而保持固定不变的成本</strong>。例如，管理人员的工资、办公费、固定资产折l旧费、员工培训费等。</p>
+<p>（2）<strong>变动成本</strong>。变动成本也称为可变成本，<strong>是指在一定时期和一定业务量范围内其总额随着业务量的变动而成正比例变动的成本</strong>。例如，直接材料费、产品包装费、外包费用、开发奖金（类似于提成）等。</p>
+<p>（3）<strong>混合成本</strong>。混合成本就是混合了固定成本和变动成本的性质的成本。例， 如水电费、电话费等。这些成本通常有一个基数，超过这个基数就会随业务量的增大而增大。</p>
+<p><strong>按计入方式分类：</strong></p>
+<p>（1）<strong>直接成本</strong>：<strong>与产品生产工艺直接有关的成本</strong>，如原料、主要材料、外购半成品、生产工人工资、机器设备折1旧等。</p>
+<p>（2）<strong>间接成本</strong>：与产品生产工艺<strong>没有直接关系的成本</strong>，如机物料消耗、辅助工人和车间管理人员工资、车间房屋折旧等。</p>
+<p>（3）<strong>沉没成本</strong>：指以往发生的，但与当前决策无关的费用。</p>
+<p><strong>按收益分类：</strong></p>
+<p>（1）<strong>有形收益</strong>也称为<strong>经济收益</strong>，可以用货币的时间价值、投资回收期、投资回收率等指标进行度量。</p>
+<p>（2）<strong>无形收益</strong>也称为不可定量的收益，主要是从性质上、心理上进行衡量，很难直接进行量上的比较。</p>
+<h1 id="盈亏平衡点"><a href="#盈亏平衡点" class="headerlink" title="盈亏平衡点"></a>盈亏平衡点</h1><p>利润=销售额-成本=销售额 -（固定成本＋可变成本）</p>
+<p>当利润&gt;0，即公司挣钱，当利润&lt;0，即公司亏本，当利润=0时，<strong>就是盈亏平衡点，此时不亏不赚</strong>，公式如下：</p>
+<p>盈亏平衡点销售额 = 总固定成本+总可变成本 </p>
+<p>*<em>盈亏平衡点销售额 = 总固定成本 +［可变成本占销售额的比例 * 盈亏平衡点销售额］*</em> </p>
+<blockquote>
+<p>如果含税的话还要加上税费 </p>
+<p>*<em>盈亏平衡点销售额 = 总固定成本 +［可变成本占销售额的比例 * 盈亏平衡点销售额］+ 税费*</em></p>
+</blockquote>
+<p>注意：可变成本和销售收入成正比。</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/10_%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92/image-20240320124148417.png" alt="image-20240320124148417"></p>
+<p>例：求上图盈亏平衡点销售额</p>
+<p><strong>先求可变成本占销售额的比例</strong></p>
+<p>利润120=收入800- 固定成本130-固定成本150-可变成本300-可变成本100</p>
+<p>可变成本总共400 / 收入800 = 0.5，可变成本占销售额的比例=0.5</p>
+<p>设 x 为盈亏平衡点销售额，则 x= 280+ （x*0.5） 解得x 为560</p>
+<h1 id="净现值计算"><a href="#净现值计算" class="headerlink" title="*净现值计算"></a>*净现值计算</h1><p><strong>现金流=收入-成本</strong></p>
+<p><strong>折现率</strong></p>
+<blockquote>
+<p>只要理解了金钱是有时间价值的，那么理解折现的概念就不难。例如，假设当前银行各类 ××宝，能够提供5%的无风险收益，那么明年今日给你105万元和今天给你100万元就是等价 的。将明年的105万元按照利率5%换算成今天价值100万元的过程，就叫作“折现”，5%就被称 之为“折现率”。</p>
+<p>由折现的概念，就能很容易理解，无风险收益越高，未来同样数额的钱，在今天的价值就 越低。例如，如果无风险收益率为10%，那么明年今天的105万元，就只能约等于今天的95.5万 元，而不是100万元了。而如果后年今天的105万元，在10%无风险收益下，就只能等于今天的 86.78万元了（105÷1.1÷1.1）。这就是央行加息，股市通常会下跌的原因，企业未来收获的 金钱，其今日价值因加息而降低了</p>
+</blockquote>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/10_%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92/image-20240320131811282.png" alt="image-20240320131811282"></p>
+<p><strong>净现值分析</strong>（NPV）：把所有预期的末来现金流入和流出都折算成现值，即考虑货币的时间价值。</p>
+<p>计算公式：$NPV=\sum_{t=1}^{n}{a}\div{(1+r)}^t$​  A是每年现金流，r是折现率，t是年份。</p>
+<p>计算项目的净现值，算的是未来的收入减去支出的的收益，在当下价值的金额。因为货币是一直在贬值的。</p>
+<p>净现值=年末净现金*当年的折线系数 - 年初投资额 * 当前的折线系数</p>
+<blockquote>
+<p>如果净现值小于0的话，说明是负收益。</p>
+</blockquote>
+<p><strong>净现值率</strong> （NPVR  Net Present Value Rate）：常作为净现值的辅助指标，如果只参考净现值的话可能，忽视投资回报率，例如花50w成本 净利润20w，花10w成本 净利润10w，前置NPV20w，NPVR是0.4，后者NPV10w，但NPVR 是1，成本小收益高，更适合投资。</p>
+<p>净现值率 NPVR =  净现值 / 投资额的现值 </p>
+<p><strong>投资回报周期，也分静态和动态</strong>，区别是否算折现率，动态的回报是要算折现率的。在某年的某个时刻，实现了盈亏平衡。</p>
+<p><strong>投资回收期分析</strong>：以净现金流入补偿净投资所用的时间，即收支平衡的时间点。在项目1中， 第4-5年问收支由负转为正，因此应该在此期间，具体是：</p>
+<p>静态投资回报周期=（累计净现值出现正值的年份-1）+（累计净值出现正值年份上一年累计净值绝对值/出现正值年份净现金流量）=4+167/2484=4.07年</p>
+<p><strong>投资收益率分析</strong>（ROI Rate Of return on investment）：是值投资收益占投资成本的比率。</p>
+<p><strong>投资收益分析 ROI = 投资收益/投资成本 X 100%</strong> </p>
+<p>通常情况下需要计算折线率。</p>
+<p>ROl =（总的折现收益-总的折现成本）/折现成本=（9743-7427） / 7427 X 100%=31%</p>
+<p>ROI = 净现值率 + 100%</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/"># 系统分析师</a>
+                    
+                        <a href="/tags/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7/"># 软考高级</a>
+                    
+                        <a href="/tags/%E8%80%83%E8%AF%81/"># 考证</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/">系统分析师：11_系统分析</a>
+            
+            
+            <a class="next" rel="next" href="/2024/03/19/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/09_%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">系统分析师：09_软件工程</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <!-- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+    <div class="copyright">
+        <!-- <span> welcome~</a></span> -->
+    </div>
+    <!-- 访问统计 -->
+    <!-- <div class="powered-by">
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+            welcome~ <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div> -->
+</footer>
+
+    </div>
+</body>
+</html>

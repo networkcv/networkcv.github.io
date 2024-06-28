@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>计算机网络：2 - 数据链路层 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">计算机网络：2 - 数据链路层</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="-计算机网络"></a>-<a target="_blank" rel="noopener" href="https://networkcv.github.io/2019/08/29/master/">计算机网络</a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://networkcv.github.io/2019/08/29/network-1-PhysicalLayer/">物理层</a></li>
+<li><a target="_blank" rel="noopener" href="https://networkcv.github.io/2019/08/29/network-2-DataLinkLayer/">数据链路层</a></li>
+<li><a target="_blank" rel="noopener" href="https://networkcv.github.io/2019/08/29/network-3-NetworkLayer/">网络层</a></li>
+<li><a target="_blank" rel="noopener" href="https://networkcv.github.io/2019/08/29/network-4-TransportLayer/">传输层</a></li>
+<li><a target="_blank" rel="noopener" href="https://networkcv.github.io/2019/08/29/network-5-ApplicationLayer/">应用层</a></li>
+</ul>
+<h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><h2 id="数据链路层基本概念及基本问题"><a href="#数据链路层基本概念及基本问题" class="headerlink" title="数据链路层基本概念及基本问题"></a>数据链路层基本概念及基本问题</h2><h4 id="数据发送模型："><a href="#数据发送模型：" class="headerlink" title="数据发送模型："></a>数据发送模型：</h4><p><img src="http://pic.networkcv.top//network/20200503/YeNcEol1sv4D.jpg?imageslim" alt="mark"><br><strong>基本概念</strong> </p>
+<blockquote>
+<p>数据链路层像一个数字管道，而在这条数字管道上传输的数据单位是帧，只有差错检验，接受对的，错误数据就扔</p>
+</blockquote>
+<ul>
+<li><p><strong>链路：</strong>  是一条点到点的物理线路段，中间没有任何其他的交换结点。 一条链路只是一条通路的一个组成部分</p>
+</li>
+<li><p><strong>数据链路：</strong>  除了物理线路外,还必须有通信协议来控制这些数据的传输。若把实现这些协议的硬件和软件加到链路上,就构成子数据链路。<br>现最常用的方法是使用适配器(即网卡)来实现这些协议的硬件和软件。一般的适配器都包括了数据链路层和物理层这两层的功能。</p>
+</li>
+<li><p><strong>帧：</strong>  数据链路层传送带是帧，对网络层传输过来的数据包进行加工，添加帧头、帧尾和校验值，此时数据包就改名叫数据帧了。</p>
+</li>
+</ul>
+<h4 id="解决的三个基本问题"><a href="#解决的三个基本问题" class="headerlink" title="解决的三个基本问题"></a>解决的三个基本问题</h4><p><strong>1.封装成帧：</strong></p>
+<p><img src="http://pic.networkcv.top//network/20200503/Y9dU0nkYluEG.jpg?imageslim" alt="mark"><br><strong>2.透明传输：</strong><br><img src="http://pic.networkcv.top//network/20200503/drwXg57qxpoK.jpg?imageslim" alt="mark"></p>
+<p>发送端的数据链路层在数据中出现控制字符”SOH”或”EOT”的前面插入一个转义字符”ESC”(其十六进制编码是18)。<br>字节填充(bytestuffing)或字符填充(characterstuffing)接收端的数据链路层在将数据送往网络层之前删除插入的转义字符。<br>如果转义字符也出现数据当中,那么应在转义字符前插入一个转义字符。当接收端收到连续的两个转义字符时,就删除其中前面的一个。</p>
+<p><strong>3.差错检测:</strong><br><img src="http://pic.networkcv.top//network/20200503/T6fAIIQFMQMe.jpg?imageslim" alt="mark">补0的个数比除数少一位，除数值任意，除法的过程类似于相加但不进位，<br>余数 作冗余码 添加在数据后面 形成FCS（帧检验序列）<br>FCS可以由CRC这种方法得出，但CRC并非是获得FCS的唯一方法  </p>
+<p><strong>检验:</strong>  若得出的余数R=0,则判定这个帧没有差错,就接受(accept)<br>若余数R!=0,则判定这个帧有差错,就丢弃  </p>
+<p><strong>特点:</strong>  但这种检测方法并不能确定究竟是哪一个或哪几个比特出现了差错<br>只要经过严格的挑选,并使用位数足够多的除数P,那么出现检测不到的差错的概率就很小很小</p>
+<h2 id="两种情况下的数据链路层"><a href="#两种情况下的数据链路层" class="headerlink" title="两种情况下的数据链路层"></a>两种情况下的数据链路层</h2><h4 id="点对点信道的数据链路层："><a href="#点对点信道的数据链路层：" class="headerlink" title="点对点信道的数据链路层："></a>点对点信道的数据链路层：</h4><blockquote>
+<p>一对一，用户使用拨号电话线接入广域网时，一般都是使用PPP协议 </p>
+</blockquote>
+<p><strong>PPP协议有三个部分组成</strong><br>数据链路层协议可以用于异步串行或同步串行介质<br>它使用LCP(链路控制协议)建立并维护数据链路协议，例如ADSL拨号，通过该协议控制身份验证，计费，欠费时，该协议可以控制断开链路连接<br>网络控制协议(NCP) 允许在点到点连接上使用多种网络层协议  </p>
+<p><strong>PPP协议帧格式：</strong><br><img src="http://pic.networkcv.top//network/20200503/rvaorI3WWh55.jpg?imageslim" alt="mark"><br><img src="http://pic.networkcv.top//network/20200503/Ws0OQ2JEQ40i.jpg?imageslim" alt="mark"><br>帧头和帧尾用 16进制的 7E 填充 7E的二进制为 01111110  </p>
+<p><strong>PPP协议解决透明传输：</strong>  </p>
+<ul>
+<li><p>字节填充法 </p>
+</li>
+<li><p>零比特填充：数据包中传输的不是字节，而是比特流，使用该方法  </p>
+<ul>
+<li>1.在发送端,只要发现有5个连续1,则立即填入一个0。因为7E的二进制为 01111110 ,其中有6个连续的1，所以要在5个连续的1时补0</li>
+<li>2.接收端对帧中的比特流进行扫描。每当发现5个连续1时,就把这5个连续1后的一个0删除,</li>
+</ul>
+</li>
+</ul>
+<h4 id="广播信道的数据链路层："><a href="#广播信道的数据链路层：" class="headerlink" title="广播信道的数据链路层："></a>广播信道的数据链路层：</h4><p>一对多，一般用于局域网，广播上连接主机较多，因此使用专用的共享信道协议来协调主机的数据发送</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Network/"># Network</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A3-%E7%BD%91%E7%BB%9C%E5%B1%82/">计算机网络：3 - 网络层</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A1-%E7%89%A9%E7%90%86%E5%B1%82/">计算机网络：1 - 物理层</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <!-- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+    <div class="copyright">
+        <!-- <span> welcome~</a></span> -->
+    </div>
+    <!-- 访问统计 -->
+    <!-- <div class="powered-by">
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+            welcome~ <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div> -->
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>系统分析师：11_系统分析 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">系统分析师：11_系统分析</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/">系统分析师</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="系统分析"><a href="#系统分析" class="headerlink" title="系统分析"></a>系统分析</h1><p>任务是根据系统设计任务书所确定的范围，对现行系统进行详细调查，描述现行系统的业务流程，指出现行系统的局限性和不足之处，确定新系统的基本目标和逻辑功能要求，即提出新系统的逻辑模型。系统分析阶段又称为<strong>逻辑设计阶段</strong>。这个阶段是<strong>整个系统建设的关键阶段</strong>，也是信息系统建设与一般工程项目的重要区别所在。</p>
+<p><strong>输出：系统说明书（需求规格说明书）。</strong></p>
+<h1 id="软件需求"><a href="#软件需求" class="headerlink" title="软件需求"></a>软件需求</h1><p><strong>软件需求</strong>：是指用户对<strong>系统在功能、行为、性能、设计约束等方面的期望</strong>。</p>
+<p>是指用户解决问题或达到目标所需的条件或能力，是系统或系统部件要满足合同、标准、规范或其他正式规定文档所需具有的条件或能力，以及反映这些条件或能力的文档说明。</p>
+<blockquote>
+<p>在需求开发和需求管理中间存在一条需求基线。需求基线就是已经开发好，并通过评审和用户确认的需求规格说明书（SRS </p>
+<p>Software requirements specification）</p>
+</blockquote>
+<p>分为 <strong>需求开发和需求管理</strong> 两大过程，如下所示：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240320202755724.png" alt="image-20240320202755724"></p>
+<h2 id="需求的层次"><a href="#需求的层次" class="headerlink" title="需求的层次"></a>需求的层次</h2><p>从上到下是从整体到局部，从概念到细节。</p>
+<p><strong>业务需求</strong>：反映<strong>企业或客户对系统高层次的目标要求</strong>，通常来自项目投资人、 客户、市场营销部门或产品策划部门。通过业务需求可以确定项目视图和范围。</p>
+<p><strong>用户需求</strong>：描述的是<strong>用户的具体目标</strong>，或用户要求系统必须能完成的任务。即描述了<strong>用户能使用系统来做什么</strong>。通常采取用户访谈和问卷调查等方式，对用户使用的场景进行整理，从而建立用户需求。</p>
+<p><strong>系统需求</strong>：从系统的角度来说明软件的需求，包括<strong>功能需求、非功能需求和设计约束</strong>等。</p>
+<ul>
+<li><p>功能需求：也称为行为需求，规定了<strong>开发人员必须在系统中实现的软件功能</strong>， 用户利用这些功能来完成任务，满足业务需要。</p>
+</li>
+<li><p>非功能需求：指<strong>系统必须具备的属性或品质</strong>，通常指<strong>性能和质量</strong>，又可以细分为软件质量属性 （如可维护性、可靠性、效率等）和其他非功能需求。</p>
+</li>
+<li><p>设计约束：也称为<strong>限制条件或补充规约</strong>，通常由外部强制规定，通常是对系统的一些约束说明，例如必须采用国有自主知识产权的数据库系统，必须运行在UNIX操作系统之下等。</p>
+</li>
+</ul>
+<h1 id="需求获取"><a href="#需求获取" class="headerlink" title="需求获取"></a>需求获取</h1><p><strong>需求获取</strong>：是一个确定和理解不同的项目干系人的需求和约束的过程。</p>
+<p><strong>常见的需求获取法包括</strong>：</p>
+<p>（1）用户访谈：找有代表性的用户访谈。其形式包括结构化和非结构化两种。存在<strong>需求信息量大，记录困难，需要领域知识的问题。</strong></p>
+<p>（2）问卷调查：用户多，无法一一访谈。</p>
+<p>（3）采样：<strong>数理统计</strong>，从种群中系统地选出有代表性的样本集的过程。样本数量=0.25* （可信度因子/错误率）^2</p>
+<p>（4）情节串联板：一系列图片，通过这些图片來讲故事。</p>
+<p><strong>（5）联合需求计划（JRP）：通过联合各个关键用户代表、系统分析师、开发团队代表一起，通过有组织的会议来讨论需求。</strong></p>
+<p>（6）需求记录技术：任务卡片、场景说明、用户故事、Volere白卡。</p>
+<h1 id="需求分析任务"><a href="#需求分析任务" class="headerlink" title="需求分析任务"></a>需求分析任务</h1><p><strong>需求分析</strong>：一个好的需求应该具有无二义性、完整性、一致性、可测试性、 确定性、可跟踪性、正确性、必要性等特性，因此，<strong>需要分析人员把杂乱无章的用户要求和期望转化为用户需求</strong>，这就是需求分析的工作。</p>
+<p><strong>需求分析的工作通常包括以下7个方面：</strong></p>
+<ol>
+<li>绘制系统上下文范围关系图（反应系统整体跟外部的交互关系</li>
+<li>创建用户界面原型（产品原型图，用AE或PS </li>
+<li>分析需求的可行性（这里是需求可行性，不是系统规划的可行性分析</li>
+<li>确定需求的优先级</li>
+<li>创建数据字典（对需求中涉及词汇的统一解释</li>
+<li>为需求建立模型（采用SA时建立功能模型、数据模型、行为模型，采用OOA时建立用例模型、分析模型</li>
+<li>使用QFD（质量功能部署，来将需求区分为常规需求、期望需求、意外需求来最大限度的提高软件工程中用户的满意度）</li>
+</ol>
+<h1 id="结构化分析方法-SA"><a href="#结构化分析方法-SA" class="headerlink" title="结构化分析方法 SA"></a>结构化分析方法 SA</h1><p>结构化分析(Structured Analysis，简称SA)。</p>
+<p>结构化特点：<strong>自顶向下，逐层分解，面向数据，其核心还是数据字典。</strong></p>
+<blockquote>
+<p>自顶向下，逐层分解，是把一个大问题分解成若干个小问题，通过解决小问题来解决大问题。</p>
+</blockquote>
+<p>三大模型：<strong>功能模型（数据流图）、行为模型（状态转换图）、数据模型（E-R 图）以及数据字典。</strong></p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240320204922986.png" alt="image-20240320204922986"></p>
+<h2 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h2><p>数据字典会准确、具体的描述系统中的元素。算是对图形的文字补充。</p>
+<p>模型的建立需要依赖数据字典，模型更多描述的是系统由哪些部分组成，各部分之间的联系。</p>
+<h2 id="数据流图（DFD）"><a href="#数据流图（DFD）" class="headerlink" title="数据流图（DFD）"></a>数据流图（DFD）</h2><blockquote>
+<p>表达的是系统内的数据流动，并通过数据流来描述系统功能的一种方法。</p>
+</blockquote>
+<p>数据流图分层的特点体现了自顶向下，逐层分解的特点。</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240320205805434.png" alt="image-20240320205805434"></p>
+<p><strong>数据流图 如下：</strong></p>
+<p>顶层图示例：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240523163909326.png" alt="image-20240523163909326"></p>
+<p>0层图示例：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240523163919934.png" alt="image-20240523163919934"></p>
+<p><strong>DFD规范</strong>：</p>
+<ol>
+<li>图形符号只能有限定的四种基础图形，且必须要有名称。</li>
+<li>数据流应该有流向。</li>
+<li>每个加工必须要有一个输入和一个输出，并且加工的输入输出流不应该同名。</li>
+<li>每个加工需要有编号，表示所处哪一层，以及上下层的关系，如1层的图再细化 可以区分出 1.1 和 1.2 这种。</li>
+<li>数据流不能直接从 数据存储 流到 实体，必须要经过加工。</li>
+</ol>
+<h2 id="状态转换图（STD）"><a href="#状态转换图（STD）" class="headerlink" title="状态转换图（STD）"></a>状态转换图（STD）</h2><p>状态转换图通过描述系统的状态和引起状态转换的事件来表示系统的行为，同时STD还指出了事件的触发会执行哪些动作（例如处理数据）。</p>
+<p><strong>状态转换图 STD如下图所示：</strong></p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240320205024258.png" alt="image-20240320205024258"></p>
+<h2 id="实体联系图（ER）"><a href="#实体联系图（ER）" class="headerlink" title="实体联系图（ER）"></a>实体联系图（ER）</h2><p>详见数据库技术中的ER模型</p>
+<h1 id="面向对象分析方法OOA"><a href="#面向对象分析方法OOA" class="headerlink" title="面向对象分析方法OOA"></a>面向对象分析方法OOA</h1><p>Object Oriented Analysis，简称OOA）</p>
+<p>两大模型：用例模型、分析模型</p>
+<p>面向对象的分析：是为了<strong>确定问题域，理解问题。</strong></p>
+<p>包含五个活动：<strong>认定对象、组织对象、 描述对象间的相互作用、确定对象的操作、定义对象的内部信息。</strong></p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323140158990.png" alt="image-20240323140158990"></p>
+<h2 id="面向对象的基础感念"><a href="#面向对象的基础感念" class="headerlink" title="面向对象的基础感念"></a>面向对象的基础感念</h2><ol>
+<li><p>对象：由数据及其操作所构成的封装体，是系统中用来描述客观事务的一个实体，是构成系统的一个基本单位。一个对象通常可以由<strong>对象名、属性和方法</strong>3个部分组成。</p>
+</li>
+<li><p>类：现实世界中实体的形式化描述，类将该实体的属性（数据）和操作 （函数）封装在一起。对象是类的实例，类是对象的模板。</p>
+<p>类可以分为三种：<strong>实体类、接口类（边界类）和控制类</strong>。实体类的对象表示现实世界中真实的实体，如人、物等。接口类（边界类）的对象为用户提供一种与系统合作交互的方式，分为人和系统两大类，其中人的接口可以是显示屏、 窗口、Web 窗体、对话框、菜单、列表框、其他显示控制、条形码、二维码或者用户与系统交互的其他方法。系统接口涉及到把数据发送到其他系统，或者从其他系统接收数据。控制类的对象用来控制活动流，充当协调者。</p>
+</li>
+<li><p>抽象：通过特定的实例抽取共同特征以后形成概念的过程。它强调主要特征，忽略次要特征。一个对象是现实世界中一个实体的抽象，一个类是一组对象的抽象，抽象是一种单一化的描述，它强调给出与应用相关的特性，拋弃不相关的特性。</p>
+</li>
+<li><p>封装：是一种信息隐蔽技术，将相关的概念组成一个单元模块，并通过一个名称来引用。面向对象封装是将数据和基于数据的操作封装成一个整体对象， 对数据的访问或修改只能通过对象对外提供的接口进行。</p>
+</li>
+<li><p>继承：表示类之间的层次关系（父类与子类），这种关系使得某类对象可以继承另外一类对象的特征，又可分为单继承和多继承。<strong>继承多个叫多重继承</strong>。</p>
+</li>
+<li><p>多态：不同的对象收到同一个消息时产生完全不同的结果。包括参数多态 （不同类型参数多种结构类型）、包含多态（父子类型关系）、过载多态（类似于重载，一个名字不同含义）、强制多态（强制类型转换）四种类型。多态由继承机制支持，将通用消息放在抽象层，具体不同的功能实现放在低层。</p>
+</li>
+<li><p>接口：描述对操作规范的说明，其只说明操作应该做什么，并没有定义操作如何做。</p>
+</li>
+<li><p>消息：体现对象间的交互，通过它向目标对象发送操作请求。</p>
+</li>
+<li><p>覆盖：子类在原有父类接口的基础上，用适合于自己要求的实现去置换父类中的相应实现。即在子类中重定义一个与父类同名同参的方法。</p>
+</li>
+<li><p>函数重载：与覆盖要区分开，函数重载与子类父类无关，且西数是同名不同参数。 </p>
+</li>
+</ol>
+<p>绑定是一个把<strong>过程调用和响应调用所需要执行的代码加以结合的过程</strong>。在一般的程序设计语言中，<strong>绑定是在编译时进行的</strong>，<strong>叫作静态绑定。动态绑定则是在运行时进行的</strong>，因此，一个给定的过程调用和代码的结合直到调用发生时才进行。</p>
+<h1 id="统一建模语言UML"><a href="#统一建模语言UML" class="headerlink" title="统一建模语言UML"></a>统一建模语言UML</h1><p>UML（统一建模语言）：是一种<strong>可视化的建模语言，而非程序设计语言</strong>，支持从需求分析开始的软件开发的全过程。</p>
+<h2 id="UML结构概述"><a href="#UML结构概述" class="headerlink" title="UML结构概述"></a>UML结构概述</h2><p>从总体上来看，UML的结构包括<strong>构造块、规则和公共机制</strong>三个部分：</p>
+<p>（1）<strong>构造块</strong>。UML有三种基本的构造块，分别是<strong>事物（thing）、关系 （relationship）和图（diagram）</strong>。<strong>事物是UML的重要组成部分，关系把事物紧密联系在一起，图是多个相互关联的事物的集合</strong>。</p>
+<p>（2）<strong>规则</strong>。规则是构造块如何放在一起的规定。<strong>包含 范围、可见性、完整性、执行</strong></p>
+<p>（3）<strong>公共机制</strong>。公共机制是指达到特定目标的公共UML方法。</p>
+<h2 id="UML关系"><a href="#UML关系" class="headerlink" title="UML关系"></a>UML关系</h2><p>依赖：一个事物的语义依赖于另一个事物的语义的变化而变化</p>
+<p>关联：是一种结构关系，描述了一组链，链是对象之间的连接。<strong>分为组合和聚合</strong>，都是<strong>部分和整体的关系，其中组合事物之间关系更强，被组合的事物有共同的生命周期，而聚合关系则没有共同的生命周期。</strong></p>
+<p>泛化：一般和特殊的关系，如子类和父类之间的关系  （is-a）</p>
+<p>实现：一个类元指定了另一个类元保证执行的契约。</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323140717812.png" alt="image-20240323140717812"></p>
+<ul>
+<li><p>依赖关系，虚线+实心三角箭头，虚线表示它们不是强关联的。</p>
+</li>
+<li><p>关联关系，是一条直线，直线两边可能有数字，表示两个事物存在结构关系。</p>
+<ul>
+<li>聚合关系，实线+<strong>空</strong>心菱形。</li>
+<li>组合关系，实线+<strong>实</strong>心菱形，表示关系更强。</li>
+</ul>
+</li>
+<li><p>泛化关系，可以看作子类和父类的关系，统一用空心三角箭头，泛化更强，所以用实线。</p>
+</li>
+<li><p>实现关系，可以看作子类和父类的关系，统一用空心三角箭头，实现弱一些，用虚线。</p>
+</li>
+</ul>
+<h2 id="UML关系示例"><a href="#UML关系示例" class="headerlink" title="UML关系示例"></a>UML关系示例</h2><p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/20190617193751844.png" alt="在这里插入图片描述"></p>
+<ul>
+<li><p>车的类图结构为&lt;&gt;，表示车是一个抽象类；</p>
+</li>
+<li><p>它有两个继承类：小汽车和自行车；它们之间的关系为<strong>实现</strong>关系，使用带空心箭头的虚线表示；</p>
+</li>
+<li><p>小汽车为与SUV之间也是继承关系，它们之间的关系为<strong>泛化</strong>关系，使用带空心箭头的实线表示；</p>
+</li>
+<li><p>小汽车与发动机之间是<strong>组合</strong>关系，使用带实心箭头的实线表示；</p>
+</li>
+<li><p>学生与班级之间是<strong>聚合</strong>关系，使用带空心箭头的实线表示；</p>
+</li>
+<li><p>学生与身份证之间为<strong>关联</strong>关系，使用一根实线表示；</p>
+</li>
+<li><p>学生上学需要用到自行车，与自行车是一种<strong>依赖</strong>关系，使用带箭头的虚线表示；</p>
+</li>
+</ul>
+<h1 id="常见UML图"><a href="#常见UML图" class="headerlink" title="常见UML图"></a>常见UML图</h1><p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323142840519.png" alt="image-20240323142840519"></p>
+<h2 id="类图"><a href="#类图" class="headerlink" title="*类图"></a>*类图</h2><p><strong>类图</strong>：静态图，为系统的静态设计视图，展现一组对象、接口、协作和它们之间的关系。UML类图如下：</p>
+<blockquote>
+<p>聚合关系的图形表示应该是空心的，下图中有误。</p>
+</blockquote>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323143018342.png" alt="image-20240323143018342"></p>
+<h2 id="用例图"><a href="#用例图" class="headerlink" title="*用例图"></a>*用例图</h2><p>用例图是描述一组用例、参数实体 以及 它们之间的关系。</p>
+<blockquote>
+<p>用例图是参与者能完成的一系列操作，也是用给用户提供了哪些操作功能</p>
+<p>1） 参与者。参与者是指存在于系统外部并与系统进行交互的任何事物，既可以是使用系统的用户，也可以是其他外部系统和设备等外部实体。</p>
+<p>2）用例。用例是在系统中执行的一系列动作，这些动作将生成特定参与者可见的价值结果。也就是说，用例表示系统所提供的服务，它定义了系统是如何被参与者所使用的，它描述的是参与者为了使用系统所提供的某一完整功能而与系统之间发生的一段对话。</p>
+<p>3）通信关联。通信关联表示的是参与者和用例之间的关系，或用例与用例之间的关系。箭头表示在这一关系中哪一方是对话的主动发起者，箭头所指方是对话的被动接受者，箭尾所指方是对话的主动发起者。如果不想强调对话中的主动与被动关系， 可以使用不带箭头的关联实线。在用例模型中，信息流不是由通信关联来表示的，该信息流是默认存在的，并且是双向的，它与箭头所指的方向没有关系。</p>
+</blockquote>
+<p>用例图：静态图，展现了一组 <strong>用例、参与者 以及 它们 之间的关系（通信关联）</strong>。用例图中的<strong>参与者可以是人、硬件或其他系统可以扮演的角色</strong>；<strong>用例是参与者完成的一系列操作</strong>，用例之间的关系有<strong>扩展、包含、泛化</strong>。如下：</p>
+<p>扩展关系（Extend）：当某个新用例在原来的用例基础上增加了新的步骤序列，则原来用例被称为基用例，这种关系称为扩展关系，可以这样理解这里的基用例是一个完整的用例，即使没有子用例的参与，也可以完成一个完整的功能，只有当扩展点被激活时，子用例才会被执行。由子用例指向基用例，比如说充值金额查询用例中有导出Excel子用例，离开子用例不影响充值金额查询的功能，这就是扩展关系。</p>
+<p>包含关系（include）：几个用例可以提取他们共用的用例作为子用例，使其成为自己行为的一部分，因为子用例被提出，基用例并非一个完整的用例，所以include关系中的基用例必须和子用例一起使用才够完整，子用例也必然被执行。由基用例指向子用例，比如几个用例都要用到登录子用例，登录作为子用例没有它的参与，其他用例也无法执行，这就是包含关系。</p>
+<p>比较：容易混淆的原因在于不理解扩展和包含的含义，所谓扩展是从基用例的基础上扩展出新的功能（子用例），子用例不影响基用例，基用例本身是完整的，没有子用例的参与也可以完成自己的功能，而包含关系是提取出来的用例是基用例的一部分基用例和子用例必须一起使用才完整。二者的关键在于离开子用例，基用例是否可以完成一个完整的功能。</p>
+<p>关联关系，参与者和用例之间输入关联关系。</p>
+<p>包含关系 include，如 登记外借信息 前，必须要包含的功能是 用户登录。</p>
+<p>扩展关系 extend，可做可不做，注意箭头方向，如 查询书籍可以选择修改书籍信息 也可以不修改</p>
+<p>泛化关系，如注册用户，可以泛化成 本地注册 和 网上注册。</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323143558513.png" alt="image-20240323143558513"></p>
+<h2 id="序列图"><a href="#序列图" class="headerlink" title="*序列图"></a>*序列图</h2><p>即顺序图，动态图，是场景的图形化表示，描述了以时间顺序组织的对象之间的交互活动。有同步消息（进行阻塞调用，调用者中止执行，等待控制权返回，需要等待返回消息，用实心三角箭头表示），异步消息（发出消息后继续执行，不引起调用者阳塞，也不等待返回消息，由空心箭头表示）、 返回消息（由从右到左的虚线箭头表示）三种。如下：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323161110841.png" alt="image-20240323161110841"></p>
+<h2 id="状态图"><a href="#状态图" class="headerlink" title="*状态图"></a>*状态图</h2><blockquote>
+<p>状态间的切换需要事件来触发，同时还需要满足监护条件。</p>
+<p>状态的迁移可以包含事件触发器、监护条件和状态。</p>
+</blockquote>
+<p>状态图：动态图，展现了一个状态机，描述<strong>单个对象在多个用例中的行为</strong>， 包括简单状态和组合状态。<strong>转换可以通过事件触发器触发，事件触发后相应的监护条件会进行检查</strong>。状态图中转换和状态是两个独立的概念，如下：图中方框代表状态，箭头上的代表触发事件，实心圆点为起点和终点。</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323161452032.png" alt="image-20240323161452032"></p>
+<h2 id="活动图"><a href="#活动图" class="headerlink" title="*活动图"></a>*活动图</h2><blockquote>
+<p>活动图将进程或其他计算结构展示为一步步的控制流和数据流，它对系统的功能建模和业务流程建模特别重要，强调对象间的控制流程。</p>
+</blockquote>
+<p>活动图：动态图，<strong>是一种特殊的状态图</strong>，展现了<strong>在系统内从一个活动到另一个活动的流程</strong>。活动的分岔和汇合线是一条水平粗线。牢记下图中并发分岔、并发汇合、监护表达式、分支、流等名词及含义。每个分岔的分支数代表了可同时运行的线程数。活动图中能够并行执行的是在一个分岔粗线下的分支上的活动</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323161843232.png" alt="image-20240323161843232"></p>
+<h2 id="其他UML图"><a href="#其他UML图" class="headerlink" title="其他UML图"></a>其他UML图</h2><p><strong>对象图</strong></p>
+<p>对象图：静态图，展现某一时刻一组对象及它们之间的关系，为类图的某一快照。在没有类图的前提下，对象图就是静态设计视图。如下：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323143450999.png" alt="image-20240323143450999"></p>
+<p><strong>通信图</strong></p>
+<p>通信图：动态图，即协作图，强调参加交互的对象的组织。如下：</p>
+<blockquote>
+<p>对象之间的消息传递，传递的时候按照消息的编号</p>
+</blockquote>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323161325676.png" alt="image-20240323161325676"></p>
+<p><strong>构件图</strong></p>
+<p>构件图（组件图）：静态图，<strong>为系统静态实现视图，展现了一组构件之间的组织和依赖</strong>。如下：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323162041718.png" alt="image-20240323162041718"></p>
+<p><strong>部署图</strong></p>
+<p>部署图：静态图，<strong>为系统静态部署视图</strong>，<strong>部署图物理模块的节点分布</strong>。它与构件图相关，通常一个结点包含一个或多个构件。其依赖关系类似于包依赖， 因此部署组件之间的依赖是单向的类似于包含关系。如下：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323183006853.png" alt="image-20240323183006853"></p>
+<p><strong>包图</strong></p>
+<p>静态图，UML包图通常用于描述系统的<strong>逻辑架构</strong>——<strong>层、子系统、包</strong>等。层可以建模为UML包。例如，UI（用户界面）层可以建模为名为UI层的包。UML包图分层组织元素的方式也可以嵌套。</p>
+<p>UML包用一大一小两个矩形组合而成。</p>
+<p>如果内部显示了其成员，则包名称标在上面的小矩形内，否则可以标在包内。</p>
+<img src="11_系统分析/image-20240323182320462.png" style="zoom:50%;" />
+
+<p>公有（+）：对它所在的包（包括内嵌的包）以及外部的元素可见。</p>
+<p>私有（-）：只对它所在的包和内嵌的包可见。</p>
+<img src="11_系统分析/image-20240323182654722.png" alt="image-20240323182654722" style="zoom:50%;" />
+
+<p>包中的依赖关系</p>
+<img src="11_系统分析/image-20240323182815785.png" alt="image-20240323182815785" style="zoom: 33%;" />
+
+<h2 id="UML-4-1-视图"><a href="#UML-4-1-视图" class="headerlink" title="UML 4+1 视图"></a>UML 4+1 视图</h2><p>视图是一种抽象，视图需要用UML图来实现。</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323162248572.png" alt="image-20240323162248572"></p>
+<ol>
+<li><strong>逻辑视图</strong>。逻辑视图也称为<strong>设计视图</strong>，它表示设计模型中在架构方面具有重要意义的部分，即类、子系统、包和用例实现的子集。</li>
+<li><strong>进程视图</strong>。进程视图是<strong>可执行线程和进程作为活动类的建模</strong>，它是逻辑视图的一次执行实例，描述了并发与同步结构。</li>
+<li><strong>实现视图</strong>。实现视图对组成基于系统的<strong>物理代码的文件和构件进行建模</strong>。</li>
+<li><strong>部署视图</strong>。部署视图把<strong>构件部署到一组物理节点上</strong>， 表示软件到硬件的映射和分布结构。</li>
+<li><strong>用例视图</strong>。用例视图是<strong>最基本的需求分析模型</strong>。</li>
+</ol>
+<h1 id="需求定义"><a href="#需求定义" class="headerlink" title="需求定义"></a>需求定义</h1><p><strong>需求定义（软件需求规格说明书SRS）</strong>：是需求开发活动的产物，编制该文档的目的是使项目干系人与开发团队对系统的初始规定有一个共同的理解，<strong>使之成为整个开发工作的基础</strong>。SRS是软件开发过程中最重要的文档之一，对于任何规模和性质的软件项目都不应该缺少。</p>
+<p>需求定义方法：</p>
+<p>（1）严格定义也称为预先定义，需求的严格定义建立在以下的基本假设之上：<strong>所有需求都能够被预先定义</strong>。开发人员与用户之间能够准确而清晰地交流。采用图形（或文字）可以充分体现最终系统。</p>
+<p>（2）原型方法，<strong>迭代的循环型开发方式</strong>，需要注意的问题：并非所有的需求都能在系统开发前被准确地说明。项目干系人之间通常都存在交流上的困难，原型提供了克该服困难的一个手段。特点：需要实际的、可供用户参与的系统模型。有合适的系统开发环境。反复是完全需要和值得提倡的，需求一旦确定， 就应遵从严格的方法。</p>
+<h1 id="需求验证"><a href="#需求验证" class="headerlink" title="需求验证"></a>需求验证</h1><p>需求验证：也称为需求确认，目的<strong>是与用户一起确认需求无误，对需求规格说明书SAS进行评审和测试</strong>，包括两个步骤：</p>
+<ul>
+<li><p>需求评审：正式评审和非正式评审。</p>
+</li>
+<li><p>需求测试：设计概念测试用例。</p>
+</li>
+</ul>
+<p><strong>需求验证通过后，要请用户签字确认，作为验收标准之一，此时，这个需求规格说明书就是需求基线</strong>，不可以再随意更新，如果需要更改必须走需求变更流程。</p>
+<h1 id="需求管理"><a href="#需求管理" class="headerlink" title="需求管理"></a>需求管理</h1><p>定义需求基线：通过了评审的需求说明书就是需求基线，下次如果需要变更需求，就需要按照流程来一步步进行。</p>
+<p>需求的流程及状态如下图所示：</p>
+<p><img src="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/image-20240323164218561.png" alt="image-20240323164218561"></p>
+<h2 id="需求变更和风险"><a href="#需求变更和风险" class="headerlink" title="需求变更和风险"></a>需求变更和风险</h2><p>主要关心需求变更过程中的需求风险管理，带有风险的做法有：<strong>无足够用户参与、忽略了用户分类、用户需求的不断增加、模棱两可的需求、不必要的特性、过于精简的 SRS、不准确的估算。</strong></p>
+<p>变更产生的原因：<strong>外部环境的变化、需求和设计做的不够完整、新技术的出现、公司机构重组造成业务流程的变化。</strong></p>
+<p><strong>变更控制委员会CCB</strong>：也称为配置控制委员会，其任务是对建议的配置项变    更做出评价、审批，以及监督已经批准变更的实施。</p>
+<img src="11_系统分析/image-20240323164310473.png" alt="image-20240323164310473" style="zoom: 50%;" />
+
+<h2 id="需求跟踪"><a href="#需求跟踪" class="headerlink" title="需求跟踪"></a>需求跟踪</h2><p>正向跟踪<strong>表示用户原始需求是否都实现了</strong>，反向跟踪<strong>表示软件实现的是否都是用户要求的</strong>，不多不少，可以用原始需求和用例表格（需求跟踪矩阵）来表示：</p>
+<p>今若原始需求和用例有对应，则在对应栏打对号，若某行都没有对号，表明原始需求未实现，正向跟踪发现问题；若某列都没有对号，表明有多余功能用例， 软件实现了多余功能，反向跟踪发现问题。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/"># 系统分析师</a>
+                    
+                        <a href="/tags/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7/"># 软考高级</a>
+                    
+                        <a href="/tags/%E8%80%83%E8%AF%81/"># 考证</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统分析师：12_系统设计</a>
+            
+            
+            <a class="next" rel="next" href="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/10_%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92/">系统分析师：10_系统规划</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <!-- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+    <div class="copyright">
+        <!-- <span> welcome~</a></span> -->
+    </div>
+    <!-- 访问统计 -->
+    <!-- <div class="powered-by">
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+            welcome~ <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div> -->
+</footer>
+
+    </div>
+</body>
+</html>

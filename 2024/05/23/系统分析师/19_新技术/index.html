@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>系统分析师：19_新技术 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">系统分析师：19_新技术</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/">系统分析师</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="诺兰阶段模型"><a href="#诺兰阶段模型" class="headerlink" title="诺兰阶段模型"></a>诺兰阶段模型</h1><p>诺兰模型：信息系统进化的阶段模型。将计算机信息系统的发展道路划分为6个阶段：</p>
+<ol>
+<li>初始阶段：计算机刚进入企业时只作为办公设备使用，应用非常少。一般仅用于财务部门。</li>
+<li>传播阶段：企业对计算机有了一定了解，想利用计算机解决工作中的问题，比如进行更多的數据处理，给管理工作和业务带来便利。会大幅度增加软件投入，盲目投入产生问题，效率低。</li>
+<li>控制阶段：从整体上控制1计算机信息系统的发展，在客观上要求组织协调、解决数据共享问题。一些职能部门内部实现了网络化，但各软件系统之间还存在“部门壁垒”与“信息孤岛”。信息系统呈现单点、分散的特点，系统和资源利用率不高。这一阶段是计算机管理变为数据管理的关键。</li>
+<li>集成阶段：在控制的基础上，企业开始重新进行规划设计，建立基础数据库，并建成统一的信息管理系统。使人、财、物等资源信息能够在企业集成共享，更有效地利用现有的IT 系统和资源。</li>
+<li>数据管理阶段：企业高层意识到信息战略的重要，信息成为企业的重要资源，企业的信息化建设也真正进入到数据处理阶段。使用统一平台，各部门、各系统基本实现资源整合和信息共享。</li>
+<li>成熟阶段：信息系统己经可以满足企业各个层次的需求，从简单的事务处理到支持高效管理的决策。企业真正把丁与管理过程结合起来，将组织内部、外部的资源充分整合和利用，从而提升了企业的竞争力和发展潜力。</li>
+</ol>
+<h1 id="区块链特征"><a href="#区块链特征" class="headerlink" title="区块链特征"></a>区块链特征</h1><ol>
+<li><strong>去中心化</strong>。区块链技术不依赖额外的第三方管理机构或硬件设施，没有中心管制，除了自成一体的区块链本身，通过分布式核算和存储，各个节点实现了信息自我验证、传递和管理。去中心化是区块链最突出最本质的特征。</li>
+<li><strong>开放性</strong>。区块链技术基础是开源的，除了交易各方的私有信息被加密外，区块链的数据对所有人开放，任何人都可以通过公开的接口查询区块链数据和开发相关应用，因此整个系统信息高度透明。</li>
+<li><strong>独立性</strong>。基于协商一致的规范和协议（类似比特币采用的哈希算法等各种数学算法），整个区块链系统不依赖其他第三方，所有节点能够在系统内自动安全地验证、交换数据，不需要任何人为的干预。</li>
+<li><strong>安全性</strong>。只要不能掌控全部数据节点的51%，就无法肆意操控修改网络数据，这使区块链本身变得相对安全，避免了主观人为的数据变更。</li>
+<li><strong>匿名性</strong>。除非有法律规范要求，单从技术上来讲，各区块节点的身份信息不需要公开或验证，信息传递可以匿名进行。</li>
+</ol>
+<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><p>云计算可以按需提供弹性资源，它的体系结构从上到下由5部分组成。</p>
+<p><strong>用户访问层</strong>：方便用户使用云计算服务所需的各种支撑服务，针对每个层次的云计算服务都需要提供相应的访问接口。</p>
+<p><strong>应用层</strong>：提供软件服务，如：财务管理，客户关系管理，商业智能。 对应SaaS</p>
+<p><strong>平台层</strong>：为用户提供对资源层服务的封装，使用户可以构建自己的应用。 对应PaaS</p>
+<p><strong>资源层</strong>：资源池层是指基础架构层面的云计算服务，这些服务可以提供虚拟化的资源，从而隐藏物理资源的复杂性。如：服务器，存储。对应IaaS</p>
+<p><strong>管理层</strong>：提供对所有层次云计算服务的管理功能。</p>
+<h1 id="云原生"><a href="#云原生" class="headerlink" title="云原生"></a>云原生</h1><p>云原生的整体概念思路是三统一，即<strong>统一基础平台、统一软件架构、统一开发流程</strong>。基于统一的基础平台、软件架构以及开发流程，数字化转型和云化转型能够把重心放在业务应用上。从而使得数字化转型的目标重新回归到业务应用本身，最终通过云原生来提升业务应用的送代速度， 促进业务创新。因此，云原生的价值和意义在于通过建立标准化来提升业务的进化速度。</p>
+<h1 id="数字孪生"><a href="#数字孪生" class="headerlink" title="数字孪生"></a>数字孪生</h1><p>数字李生是形成物理世界中某一生产流程的模型及其在数字世界中的数字化镜像的过程和方法。数字孪生有五大驱动要素——物理世界的<strong>传感器、数据、集成、分析和驱动器</strong>， 以及持续更新的数字孪生应用程序。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/"># 系统分析师</a>
+                    
+                        <a href="/tags/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7/"># 软考高级</a>
+                    
+                        <a href="/tags/%E8%80%83%E8%AF%81/"># 考证</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/06/27/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/20_%E8%80%83%E8%AF%95%E9%80%9A%E8%BF%87/">系统分析师：20_考试通过</a>
+            
+            
+            <a class="next" rel="next" href="/2024/05/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/18_%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E7%BB%83%E4%B9%A0_%E8%AE%BA%E7%BB%9F%E4%B8%80%E8%BF%87%E7%A8%8BRUP%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E5%8F%8A%E5%BA%94%E7%94%A8/">系统分析师：18_论文写作练习_论统一过程RUP开发模型及应用</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <!-- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+    <div class="copyright">
+        <!-- <span> welcome~</a></span> -->
+    </div>
+    <!-- 访问统计 -->
+    <!-- <div class="powered-by">
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+            welcome~ <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div> -->
+</footer>
+
+    </div>
+</body>
+</html>

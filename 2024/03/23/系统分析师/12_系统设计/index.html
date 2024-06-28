@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>系统分析师：12_系统设计 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">系统分析师：12_系统设计</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/">系统分析师</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h1><p>系统分析阶段决定“做什么”，系统设计阶段决定“怎么做”，该阶段也称为物理设计阶段。</p>
+<p>该阶段的任务是根据 <strong>系统规格说明书SRS</strong> 中规定的功能要求，结合实际条件实现技术方案，根据<strong>逻辑模型</strong> 设计出 <strong>物理模型</strong>。为下一阶段的实施工作奠定基础。</p>
+<p>系统设计的主要内容：<strong>概要设计、详细设计。</strong></p>
+<p><strong>概要设计</strong>：又称为<strong>系统总体结构设计</strong>，是将系统的功能需求分配给软件模块，确定每个模块的功能和调用关系，<strong>形成软件的模块结构图，即系统结构图</strong>，类似于分配任务功能。</p>
+<p><strong>详细设计</strong>：<strong>模块内详细算法设计、模块内数据结构设计、数据库的物理设计、其他设计（代码、输入/输出格式、用户界面）</strong>、编写详细设计说明书、评审，具体要实现某个功能的技术方案落地。</p>
+<h1 id="处理流程设计"><a href="#处理流程设计" class="headerlink" title="处理流程设计"></a>处理流程设计</h1><h2 id="业务流程定义"><a href="#业务流程定义" class="headerlink" title="业务流程定义"></a>业务流程定义</h2><p>业务流程是一组将输入转化为输出的相互关联或相互作用的活动。流程6个要素分别是：输入、活动、活动的相互作用（即结构）、输出、客户、价值。</p>
+<h2 id="工作流管理系统-WFMS"><a href="#工作流管理系统-WFMS" class="headerlink" title="工作流管理系统 WFMS"></a>工作流管理系统 WFMS</h2><p>工作流管理系统是一个软件系统，它完成工作流的定义和管理，按照在系统中预先定义好的工作流逻辑进行工作流实例的执行。</p>
+<p>工作流管理系统不是企业的业务系统，而是为企业的业务系统的运行提供了一个软件支撑环境。</p>
+<p>WFMS的 <strong>基本功能</strong> 体现在对 <strong>工作流进行建模、工作流执行、业务过程的管理和分析。</strong></p>
+<p>WfMS最 <strong>基本的组成部分</strong> 是工作流参考模型，其包含6个基本模块，分别是</p>
+<ol>
+<li><p><strong>工作流执行服务</strong></p>
+</li>
+<li><p><strong>工作流引擎</strong></p>
+</li>
+<li><p><strong>流程定义工具</strong></p>
+</li>
+<li><p><strong>客户端应用</strong></p>
+</li>
+<li><p><strong>调用应用</strong></p>
+</li>
+<li><p><strong>管理监控工具</strong></p>
+</li>
+</ol>
+<p>操作步骤如下理解如下：</p>
+<p>通过 <strong>流程定义工具</strong> 调用 <strong>工作流执行服务</strong> 去定义工作流程，每个工作流程会对应 <strong>调用应用</strong>。</p>
+<p><strong>客户端应用</strong> 通过调用 <strong>工作流执行服务</strong>，然后执行对应工作流程所对应 <strong>调用应用</strong> 。</p>
+<p>可以看出 <strong>工作流执行服务</strong> 包含了工作流程的定义、创建、管理和执行，真正执行具体任务的是 <strong>工作流引擎</strong>，可以将它看成工作线程。</p>
+<p><strong>管理监控工具</strong> 查看工作流程的执行情况。</p>
+<p>1）工作流执行服务。工作流执行服务是WFMS的核心模块，它的功能包括创建和管理流程定义，创建、管理和执行流程实例。在执行上述功能的同时，应用程序可能会通过编程接口与工作流执行服务交互，一个工作流执行服务可能包含有多个分布式工作的工作流引擎。该模块还为每个用户维护一个活动列表，告诉用户当前必须处理的任务，可以通过电子邮件或者短消息的形式提醒用户任务的到达，例如，在开通课程流程中，当新的课程申请的到来时，可以提示上级主管。</p>
+<p>2）工作流引擎。工作流引擎是为流程实例提供运行环境，并解释执行流程实例的软件模块，即负责流程处理的软件模块。</p>
+<p>3）流程定义工具。流程定义工具是管理流程定义的工具，它可以通过图形方式把复杂的流程定义显示出来并加以操作，流程定义工具与工作流执行服务交互，一般该模块为设计人员提供图形化的用户界面。通过流程定义工具，设计人员可以创建新的流程或者改变现有流程，在流程定义时， 可以指定各项活动的参与者的类型、活动之间的相互关系和传递规则等。</p>
+<p>4）客户端应用。客户端应用是通过请求的方式与工作流执行服务交互的应用，也就是说，是客户端应用调用工作流执行服务。客户端应用与工作流执行服务交互，它是面向最终用户的界面，可以将客户端应用设计为 B/S架构或C/S架构。</p>
+<p>5）调用应用。调用应用是被工作流执行服务调用的应用，调用应用与工作流执行服务交互。为了协作完成一个流程实例的执行，不同的工作流执行服务之间进行交互，它通常是工作流所携带数据的处理程序，常用的是电子文档的处理程序，它们在工作流执行过程中被调用，并向最终用户展示数据，这些应用程序的信息包括名称、调用方式和参数等。例如，在OA 系统中，可以调用相关的程序来直接查看Word文档或者Excel表格数据等。</p>
+<p>6） 管理监控工具。管理监控工具主要指组织机构和参与者等数据的维护管理和流程执行情况的监控，管理监控工具与工作流执行服务交互。</p>
+<p>WFMS通过管理监控工具提供对流程实例的状态查询、挂起、恢复和销毁等操作，同时提供系统参数和系统运行情况统计等数据。用户可以通过图形或者图表的方式对系统数据进行汇总与统计，并可随时撤销一些不合理的流程实例。</p>
+<h2 id="流程表示工具"><a href="#流程表示工具" class="headerlink" title="流程表示工具"></a>流程表示工具</h2><ol>
+<li><strong>程序流程图（Program Flow Diagram，PFD）</strong>用一些图框表示各种操作，它<strong>独立于任何一种程序设计语言</strong>，比较直观、清晰，易于学习掌握。任何复杂的程序流程图都应该由<strong>顺序、选择和循环</strong>结构组合或嵌套而成。</li>
+<li>IPO图也是流程描述工具，用来描述构成软件系统的<strong>每个模块的输入、输出和数据加工</strong>。</li>
+<li>盒图（N-S图）容易表示<strong>嵌套和层次关系</strong>，并具有强烈的结构化特征。但是当问题很复杂时，N-s图可能很大，因此<strong>不适合于复杂程序的设计。</strong></li>
+<li>问题分析图（PAD）是一种支持<strong>结构化程序设计</strong>的图形工具。PAD具有清晰的逻辑结构、标准化的图形等优点，更重要的是，它引导设计人员使用结构化程序设计方法，从而提高程序的质量。</li>
+</ol>
+<h1 id="结构化设计-SD"><a href="#结构化设计-SD" class="headerlink" title="结构化设计 SD"></a>结构化设计 SD</h1><p>SD 以 SRS 和 数据字典 为基础，是一个自顶向下，逐步求精，和模块化（高内聚和低耦合）的过程。</p>
+<p>缺点：开发周期长、难以适应需求的变化、很少考虑数据结构</p>
+<h2 id="结构化设计原则"><a href="#结构化设计原则" class="headerlink" title="结构化设计原则"></a>结构化设计原则</h2><ul>
+<li>模块独立性原则</li>
+<li>系统结构准则</li>
+</ul>
+<h2 id="结构化设计原则-1"><a href="#结构化设计原则-1" class="headerlink" title="结构化设计原则"></a>结构化设计原则</h2><ul>
+<li><p>保持模块的大小适中；</p>
+</li>
+<li><p>尽可能减少调用的深度；</p>
+</li>
+<li><p>多扇入，少扇出（扇入被别人调用或依赖，扇出则相反；</p>
+</li>
+<li><p>单入口，单出口；</p>
+</li>
+<li><p>模块的作用域应该在模块之内；</p>
+</li>
+<li><p>功能应该是可预测的。</p>
+</li>
+</ul>
+<p>高内聚速记：欧罗石锅通顺共</p>
+<p>低耦合速记：无数标空外公呢</p>
+<h2 id="模块独立-高内聚（从低到高"><a href="#模块独立-高内聚（从低到高" class="headerlink" title="*模块独立-高内聚（从低到高"></a>*模块独立-高内聚（从低到高</h2><p>这里的高内聚低耦合也适用于面向对象设计。</p>
+<p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323213656328.png" alt="image-20240323213656328"></p>
+<h2 id="模块独立-低耦合（从低到高"><a href="#模块独立-低耦合（从低到高" class="headerlink" title="*模块独立-低耦合（从低到高"></a>*模块独立-低耦合（从低到高</h2><p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323213202695.png" alt="image-20240323213202695"></p>
+<h1 id="面向对象设计-OOD"><a href="#面向对象设计-OOD" class="headerlink" title="面向对象设计 OOD"></a>面向对象设计 OOD</h1><p><strong>面向对象的设计</strong>：是<strong>设计分析模型和实现相应源代码</strong>，设计问题域的解决方案，与技术相关。00D同样应遵循抽象、信息隐蔽、功能独立、模块化等设计准则。</p>
+<p>面向对象的<strong>分析模型</strong>主要由<strong>顶层架构图、用例与用例图、领域概念模型构成</strong>；</p>
+<p>面向对象的<strong>设计模型</strong>则包含 <strong>以包图表示的软件体系结构图、以交互图表示的用例实现图、 完整精确的类图、针对复杂对象的状态图和用以描述流程化处理过程的活动图等</strong>。</p>
+<p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323214956833.png" alt="image-20240323214956833"></p>
+<h2 id="类的三种类型"><a href="#类的三种类型" class="headerlink" title="类的三种类型"></a>类的三种类型</h2><p>实体类、边界类和控制类。</p>
+<p>1）实体类：存储和管理系统内部的信息，实体类通常需要放入持久存储体（数据库、文件等）。实体对象（实体类的实例）用于保存和更新事件、人员等信息。</p>
+<p>2）控制类：控制类是用于控制用例工作的类，体现应用程序的执行逻辑。例如，转账可看成控制类，该类提供了银行账户转账关联的所有逻辑操作。</p>
+<p>3）边界类：位于系统与外界的交接处，用于系统外部环境与系统内部的交互。常见的边界类有窗口、通信协议、打印机接口、传感器、终端等。</p>
+<h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><ol>
+<li><strong>单一责任原则</strong>。就一个类而言，应该仅有一个引起它变化的原因。即，当需要修改某个类的时候原因有且只有一个，<strong>让一个类只做一种类型责任。</strong></li>
+<li><strong>开放-封闭原则</strong>。<strong>对扩展开放，对修改关闭，减少回归。</strong>软件实体（类、模块、函数等）应该是可以扩展的，即开放的，但是不可修改的，即封闭的。</li>
+<li><strong>里氏替换原则</strong>。<strong>子类型必须能够替换掉他们的基类型</strong>。即，在任何父类可以出现的地方，都可以用子类的实例来赋值给父类型的引用。</li>
+<li><strong>依赖倒置原则</strong>。高层模块不应该依赖底层模块，二者都该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象。</li>
+<li><strong>接口分离原则</strong>。即：<strong>依赖于抽象，不要依赖于具体</strong>，同时在抽象级别不应该有对于细节的依赖。这样做的好处就在于可以最大限度地应对可能的变化。</li>
+<li><strong>最少知识原则</strong>。也称为迪米特法则，是指一个实体应当尽可能少地与其他实体发生相互作用，这样一个模型修改的时候，就会尽量少的影响别的模块。</li>
+</ol>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="*设计模式"></a>*设计模式</h1><p>每一个设计模式描述了一个在我们周围不断重复发生的问题，以及该问题的解决方案的核心。</p>
+<p>设计模式的核心在于提供了相关问题的解决方案，使得人们可以更加简单方便的复用成功的的设计和体系结构。</p>
+<p>四个基本要素：<strong>模式名称、问题（应该在何时使用模式）、解决方案（设计的内容）、效果（模式应用的效果）</strong></p>
+<p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323215639726.png" alt="image-20240323215639726"></p>
+<h2 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a>创建型设计模式</h2><p>解决对象的创建相关的问题</p>
+<p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323220231249.png" alt="image-20240323220231249"></p>
+<h2 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a>结构型设计模式</h2><p>用来描述类和类之间结构的问题</p>
+<p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323220857276.png" alt="image-20240323220857276"></p>
+<p><strong>桥接模式</strong>：现需要提供大中小3种型号的画笔，能够绘制5种不同颜色，如果使用蜡笔，我们需要准备3*5=15支蜡笔，也就是说必须准备15个具体的蜡笔类。而如果使用毛笔的话，只需要3种型号的毛笔，外加5个颜料盒。</p>
+<p><strong>组合模式</strong>：将对象组合成树形结构表示 整体-部分，如类目树、文件树。</p>
+<p><strong>装饰模式：</strong>如Java中的文件流，强调是在运用时可以动态增强类。</p>
+<p><strong>享元模式</strong>：提供细粒度的对象来共享，即创建一个对象，需要在多处共享使用。</p>
+<h2 id="行为型设计模式"><a href="#行为型设计模式" class="headerlink" title="行为型设计模式"></a>行为型设计模式</h2><p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323222543484.png" alt="image-20240323222543484"> </p>
+<p><strong>中介者模式：</strong>和代理模式和类似，但区别是中介者可以让被中介的双方服务，但是代理模式，只能包装代理方。</p>
+<p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/image-20240323223631404.png" alt="image-20240323223631404"></p>
+<p><strong>备忘录模式：</strong> 存档和读档。</p>
+<p><strong>状态模式：</strong>状态变更时变更它的行为</p>
+<p>stragegy模式：策略模式，主要是方便策略的选择与改变；</p>
+<p>Observer模式：主要是建立观察关系，一旦被观察者有变化快速通知观察者联动处理</p>
+<p>State模式：主要关注状态的变迁，这些与图中的表达不符合</p>
+<h1 id="人机界面设计"><a href="#人机界面设计" class="headerlink" title="人机界面设计"></a>人机界面设计</h1><ul>
+<li>置于用户控制之下 </li>
+<li>减少用户的记忆负担</li>
+<li>保持界面的一致性</li>
+</ul>
+<h1 id="软件架构设计"><a href="#软件架构设计" class="headerlink" title="软件架构设计"></a>软件架构设计</h1><blockquote>
+<p>系分不考，架构考</p>
+</blockquote>
+<p>架构设计的<strong>核心问题是能否达到架构级的软件复用。</strong></p>
+<p>架构风格反映了<strong>领域中众多系统所共有的结构和语义特性，</strong>并指导如何将各个构建有效的组成一个完整的系统。</p>
+<h2 id="架构风格"><a href="#架构风格" class="headerlink" title="架构风格"></a>架构风格</h2><ul>
+<li>数据流风格：批处理序列（一个一个处理，顺序结构）、管道/过滤器（数据进出管道都要经过过滤器处理，分阶段的数据处理，常见于网络数据处理） </li>
+<li>调用/返回风格：主程序/子程序、面向对象风格、层次结构（与上下两层关系密切）</li>
+<li>独立构件风格：进程通信（构件之间是独立的，通过消息通信）、事件系统。</li>
+<li>虚拟机风格：解释器（有虚拟机，可以仿真硬件执行过程，实现解释执行， 效率较低，可跨平台）、基于规则的系统。</li>
+<li>仓库风格：数据库系统、超文本系统、黑板系统（是一个解决方案的数据库， 知识源与黑板进行通信，用于没有确定方案的系统）</li>
+</ul>
+<h1 id="SOA架构"><a href="#SOA架构" class="headerlink" title="SOA架构"></a>SOA架构</h1><p>SOA（全称：Service Oriented Architecture），中文意思为 “面向服务的架构”，你可以将它理解为一个架构模型或者一种设计方法，而并不是服务解决方案。其中包含多个服务， 服务之间通过相互依赖或者通过通信机制，来完成相互通信的，最终提供一系列的功能。一个服务通常以独立的形式存在与操作系统进程中。各个服务之间通过网络调用 。</p>
+<p>跟 SOA 相提并论的还有一个 ESB（企业服务总线），简单来说ESB就是一根管道，用来连接各个服务节点。为了集成不同系统，不同协议的服务，ESB 可以简单理解为：它做了消息的转化解释和路由工作，让不同的服务互联互通；</p>
+<p>我们将各个应用之间彼此的通信全部去掉，在中间引入一个ESB企业总线，各个服务之间，只需要和ESB进行通信，这个时候，各个应用之间的交互就会变得更加的清晰，业务架构/逻辑等，也会变得很清楚。原本杂乱没有规划的系统，梳理成了一个有规划可治理的系统，在这个过程中，最大的变化，就是引入了ESB企业总线。</p>
+<p>在SOA架构中：</p>
+<p>UDDI （Universal DescriptionDiscovery and Integration，统一描述、发现和集成）提供了一种服务发布、查找和定位的方法，是服务的信息注册规范，以便被需要该服务的用户发现和使用它。</p>
+<p>SOAP （Simple ObjectAccess Protocol，简单对象访问协议）定义了服务请求者和服务提供者之间的消息传输规范。</p>
+<p>WSDL （Web ServiceDescription Language， Web 服务描述语言）是对服务进行描述的语言，它有一套基于 XML 的语法定义。WSDL 描述的重点是服务。</p>
+<h1 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h1><p>优点：</p>
+<ul>
+<li>功能高内聚，关注领域内的功能</li>
+<li>模块松耦合，服务之间的变更不会互相影响</li>
+<li>服务粒度细，模块复杂度可控</li>
+<li>独立部署，扩展性好，动态伸缩</li>
+<li>技术异构，针对不同服务进行不同技术选型</li>
+</ul>
+<p>挑战：</p>
+<ol>
+<li><p>挑战：服务拆分和边界定义</p>
+<p>在微服务架构中，正确的服务拆分和边界定义是至关重要的。不正确的拆分可能导致服务之间的紧密耦合，增加了维护和扩展的复杂性。</p>
+<p>解决方案：在进行服务拆分时，应遵循单一职责原则。每个服务应该有清晰的定义和边界，只关注自己的特定业务领域。使用领域驱动设计（DDD）的概念可以帮助识别业务边界和上下文，并指导服务的拆分过程。</p>
+</li>
+<li><p>挑战：部署和监控</p>
+<p>微服务架构的部署和监控是一个复杂的任务。管理多个服务的版本控制、部署、容错和监控需要有效的工具和策略。</p>
+<p>解决方案：采用持续集成和持续部署（CI/CD）实践，自动化构建、测试和部署流程。使用监控工具和日志聚合平台，如    Prometheus和ELK Stack，来实时监测服务的性能和健康状况。</p>
+</li>
+<li><p>挑战：服务发现和负载均衡</p>
+<p>微服务架构中的服务实例数量可能非常庞大，因此需要有效的服务发现和负载均衡机制来管理请求流量和保证高可用性。</p>
+<p>解决方案：使用服务发现工具，如Consul或Etcd，来自动注册和发现服务实例。结合负载均衡器，如Nginx或Kubernetes Ingress，以实现请求的负载均衡和故障转移。</p>
+</li>
+<li><p>挑战：服务间通信和数据一致性</p>
+<p>微服务架构中的服务通信是一个关键问题。多个服务之间的同步和异步通信可能导致性能瓶颈和数据一致性问题。</p>
+<p>解决方案：选择适当的通信机制，如RESTful API、消息队列或事件驱动架构，根据业务需求和场景进行选择。对于数据一致性，可以采用事件驱动的方式，通过事件发布和订阅来确保数据的最终一致性。</p>
+</li>
+<li><p>挑战：分布式事务和数据管理</p>
+<p>在微服务架构中，跨多个服务的分布式事务和数据管理是一个复杂的问题。确保数据的一致性和完整性是一项具有挑战性的任务。</p>
+<p>解决方案：避免跨多个服务的强一致性要求，尽量采用最终一致性模式。引入分布式事务管理器，如Saga模式或可靠事件模式，来协调多个服务之间的事务和数据变更。</p>
+</li>
+</ol>
+<h1 id="SOA架构和微服务架构对比"><a href="#SOA架构和微服务架构对比" class="headerlink" title="SOA架构和微服务架构对比"></a>SOA架构和微服务架构对比</h1><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">微服务</th>
+<th align="center">SOA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">业务划分方式</td>
+<td align="center">纵向业务划分</td>
+<td align="center">水平多层</td>
+</tr>
+<tr>
+<td align="center">粒度</td>
+<td align="center">细粒度</td>
+<td align="center">粗粒度</td>
+</tr>
+<tr>
+<td align="center">部署方式</td>
+<td align="center">独立部署</td>
+<td align="center">整体部署</td>
+</tr>
+<tr>
+<td align="center">通信方式</td>
+<td align="center">轻量级通信方式如HTTP、RPC</td>
+<td align="center">企业服务总线（ESB）充当服务之间通信的角色</td>
+</tr>
+</tbody></table>
+<p>1.微服务去中心化，去掉ESB企业总线。微服务不再强调传统SOA架构里面比较重的ESB企业服务总线，同时SOA的思想进入到单个业务系统内部实现真正的组件化</p>
+<p>2.Docker容器技术的出现，为微服务提供了更便利的条件，比如更小的部署单元，每个服务可以通过类似Node或者Spring Boot等技术跑在自己的进程中。</p>
+<p>3.SOA注重的是系统集成方面，而微服务关注的是完全分离</p>
+<p><img src="/2024/03/23/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/12_%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/b2a6f154f7f14626a08e3b4587db07a5.png" alt="image.png"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/"># 系统分析师</a>
+                    
+                        <a href="/tags/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7/"># 软考高级</a>
+                    
+                        <a href="/tags/%E8%80%83%E8%AF%81/"># 考证</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/13_%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%96%BD%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4/">系统分析师：13_系统实施与系统维护</a>
+            
+            
+            <a class="next" rel="next" href="/2024/03/20/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/11_%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/">系统分析师：11_系统分析</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <!-- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+    <div class="copyright">
+        <!-- <span> welcome~</a></span> -->
+    </div>
+    <!-- 访问统计 -->
+    <!-- <div class="powered-by">
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+            welcome~ <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div> -->
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>系统分析师：14_项目管理 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Network Cavalry&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Network Cavalry&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">系统分析师：14_项目管理</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/">系统分析师</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="范围管理"><a href="#范围管理" class="headerlink" title="范围管理"></a>范围管理</h1><p>范围管理确定在项目内<strong>包括什么工作和不包括什么工作</strong>，由此界定的项目范围在项目的全生命周期内可能因种种原因而变化，项目范围管理也要<strong>管理项目范围的这种变化。项目范围的变化也叫变更。</strong></p>
+<p>对项目范围的管理，是通过5个管理过程来实现的：</p>
+<p>（1）<strong>编制范围管理计划</strong>。<strong>对如何定义、确认和控制项目范围的过程进行描述。</strong></p>
+<p>（2）<strong>定义范围</strong>。详细描述产品范围和项目范围，编制项目范围说明书，作为以后项目决策的基础。其输入包括：<strong>项目章程。项目范围管理计划。组织过程资产。批准的变更申请。</strong></p>
+<p>（3）<strong>创建工作分解结构</strong>。把<strong>整个项目工作分解为较小的、易于管理的组成部分， 形成一个自上而下的分解结构。</strong></p>
+<p>（4）<strong>确认范围</strong>。<strong>正式验收已完成的可交付成果。</strong></p>
+<p>（5）<strong>范围控制</strong>。<strong>监督</strong>项目和产品的范围状态、管理范围基准变更。</p>
+<h2 id="WBS"><a href="#WBS" class="headerlink" title="WBS"></a>WBS</h2><p>WBS 将项目整体或者主要的可交付成果分解成容易管理、方便控制的若干个子项目或者<strong>工作包</strong>，子项目需要继续分解为工作包，持续这个过程，直到<strong>整个项目部分解为可管理的工作包，这些工作包的总和是项目的所有工作范围</strong>。最普通的WBS 如下表所示： </p>
+<p><img src="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/14_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-20240324203048699.png" alt="image-20240324203048699"></p>
+<h1 id="进度管理"><a href="#进度管理" class="headerlink" title="进度管理"></a>进度管理</h1><p>进度管理就是采用科学的方法，确定进度目标，编制进度计划和资源供应计划，进行进度控制，在与质量、成本目标协调的基础上，<strong>实现工期目标。</strong></p>
+<p>具体来说，包括以下过程：</p>
+<p>（1）<strong>活动定义</strong>：确定完成项目各项可交付成果而需要开展的具体活动。</p>
+<p>（2）<strong>活动排序</strong>：识别和记录各项活动之间的先后关系和逻辑关系。</p>
+<p>（3） <strong>活动资源估算</strong>：估算完成各项活动所需要的资源类型和效益。</p>
+<p>（4）<strong>活动历时估算</strong>：估算完成各项活动所需要的具体时间。</p>
+<p>（5）<strong>进度计划编制</strong>：分析活动顺序、活动持续时间、资源要求和进度制约因素， 制订项目进度计划。</p>
+<p>（6）<strong>进度控制</strong>：根据进度计划开展项目活动，如果发现偏差，则分析原因或进行调整。</p>
+<h2 id="进度管理图形"><a href="#进度管理图形" class="headerlink" title="进度管理图形"></a>进度管理图形</h2><p>进度安排的常用图形描述方法有Gantt 图（甘特图〉和项目计划评审技术 （Program Evaluation&amp; Review Technique, PERT）图。</p>
+<p><strong>甘特图</strong>，反映了项目任务的并行关系，但没有反映出依赖关系。</p>
+<p><strong>PERT</strong>图 ，反映了任务消耗的时间，以及任务之间的依赖关系，没有没有体现出任务间的并行关系。</p>
+<p><img src="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/14_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-20240324140125646.png" alt="image-20240324140125646"></p>
+<h2 id="关键路径"><a href="#关键路径" class="headerlink" title="*关键路径"></a>*关键路径</h2><p>关键路径：是<strong>项目的最短工期</strong>，<strong>但却是从开始到结束时间最长的路径</strong>。进度网络图中可能有多条关键路径，因为活动会变化，因此关键路径也在不断变化中。</p>
+<p>关键活动：关键路径上的活动，最早开始时间-最晚开始时间。</p>
+<p>通常，每个节点的活动会有如下几个时间：</p>
+<p>（1）<strong>最早开始时间</strong>（ES），某项活动能够开始的最早时间。（需要等它前置节点都完成）</p>
+<p>（2）<strong>最早结束时间</strong>（EF），某项活动能够完成的最早时间。EF=ES+工期 </p>
+<p>（3）<strong>最迟结束时间</strong>（LF）。为了使项目按时完成，某项活动必须完成的最迟的间。</p>
+<p>（4）<strong>最迟开始时间</strong>（LS）。为了使项目按时完成，某项活动必须开始的最迟时间。LS=LF-工期</p>
+<p><strong>这几个时间通常作为每个节点的组成部分，如图所示：</strong></p>
+<p><strong>顺推：从前往后推，最早开始时间ES=所有前置活动最早完成时间EF的最大值；最早完成时间EF=最早开始ES时间+持续时间。</strong></p>
+<p><strong>逆推：从后往前推，最晚完成时间LF=所有后续活动最晚开始时间LS的最小值；最晚开始时间LS-最晚完成LF时间-持续时间。</strong></p>
+<p>下面教材原图有误，视频里有详细勘误。图D中的最早开始时间应该是20，而不是22</p>
+<p><img src="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/14_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-20240324140546521.png" alt="image-20240324140546521"></p>
+<p><strong>最后一个节点肯定是在关键路径上，关键路径上的节点的最早开始时间和最晚开始时间都是一样的。</strong></p>
+<h2 id="浮动时间"><a href="#浮动时间" class="headerlink" title="浮动时间"></a>浮动时间</h2><p><strong>总浮动时间</strong>：在不延误项目完工时间且不违反进度制约因素的前提下，活动可以从最早开始时间推迟或拖延的时间量，就是该活动的进度灵活性。正常情况下，关键活动的总浮动时间为零。</p>
+<p><strong>总浮动时间</strong>=<strong>最迟开始LS-最早开始ES    或    最迟完成LF-最早完成EF    或    关键路径- 非关键路径时长。</strong></p>
+<p><strong>自由浮动时间</strong>：是指在不延误任何紧后活动的最早开始时间且不违反进度制约因素的前提下，活动可以从最早开始时间推迟或拖延的时间量。</p>
+<p><strong>自由浮动时间</strong>=<strong>紧后活动最早开始时间的最小值-本活动的最早完成时间。</strong></p>
+<blockquote>
+<p>相当于最多可以休息几天，比如下个紧后活动是20号，但是当前活动最早15号就能完成，那么自由浮动时间就为5天。</p>
+<p>注意关键路径没有浮动时间。</p>
+</blockquote>
+<h1 id="成本管理"><a href="#成本管理" class="headerlink" title="成本管理"></a>成本管理</h1><p>项目成本管理是在整个项目的实施过程中，为确保项目在批准的预算条件下尽可能保质按期完成，而对所需的各个过程进行管理与控制。</p>
+<p>项目成本管理包括<strong>成本估算、成本预算和成本控制</strong>三个过程。</p>
+<p>（1）成本估算是对完成项目<strong>所需成本的估计和计划</strong>，是项目计划中的一个重要的、关键的、敏感的部分；成本估算主要靠分解和类推的手段进行，基本估算方法分为三类：自顶向下的估算、自底向上的估算和差别估算法。</p>
+<p>（2）成本预算是<strong>把估算的总成本分配到项目的各个工作包</strong>，建立成本基准计 划以衡量项目绩效；<strong>应急储备和管理储备。</strong></p>
+<p>（3）成本控制保证<strong>各项工作在各自的预算范围内进行</strong>。</p>
+<h2 id="成本类型"><a href="#成本类型" class="headerlink" title="成本类型"></a>成本类型</h2><p>（1）<strong>可变成本</strong>：<strong>随着生产量、工作量或时间而变的成本为可变成本</strong>。可变成本又称变动成本。</p>
+<p>（2）<strong>固定成本</strong>：<strong>不随生产量、工作量或时间的变化而变化的非重复成本</strong>为固定成本。</p>
+<p>（3）<strong>直接成本</strong>：<strong>直接可以归属于项目工作的成本为直接成本</strong>。如<strong>项目团队差旅费、工资、 项目使用的物料及设备使用费等。</strong></p>
+<p>（4）<strong>间接成本</strong>：来自一般管理费用科目或几个项目共同担负的项目成本所<strong>分摊</strong>给本项目的费用，就形成了项目的间接成本，<strong>如税金、额外福利和保卫费用等。</strong></p>
+<p>（5）<strong>机会成本</strong>：<strong>失去的最大收益</strong>，<strong>一般机会成本要小于实际收益</strong>，是利用一定的时间或资源生产一种商品时，而失去的利用这些资源生产其他最佳替代品的机会就是机会成本，泛指一切在做出选择后其中一个最大的损失。</p>
+<p>（6）<strong>沉没成本</strong>：是指由于<strong>过去的决策已经发生了的</strong>，而不能由现在或将来的任何决策改变的成本。沉没成本是一种历史成本，对现有决策而言是不可控成本，会很大程度上影响人们的行为方式与决策，<strong>在投资决策时应排除沉没成本的干扰。</strong></p>
+<p>学习曲线：重复生成产品时，<strong>产品的单位成本会随着产量的扩大呈现规律性递减</strong>。估算成本时，也要考虑此因素。</p>
+<h1 id="软件配置管理"><a href="#软件配置管理" class="headerlink" title="软件配置管理"></a>软件配置管理</h1><p><strong>软件配置管理的内容是配置项</strong></p>
+<p>以下内容都可以作为配置项进行管理：<strong>外部交付的软件产品和数据、指定的内部软件工作产品和数据、指定的用于创建或支持软件产品的支持工具、供方/供应商提供的软件和客户提供的设备/软件。</strong></p>
+<p>典型配置项包括<strong>项目计划书、需求文档、设计文档、源代码、可执行代码、测试用例、 运行软件所需的各种数据</strong>，它们<strong>经评审和检查通过后进入配置管理</strong>。</p>
+<p>每个配置项的<strong>主要属性有：名称、标识符、文件状态、版本、作者、日期等。</strong></p>
+<p>配置项可以分为<strong>基线配置项和非基线配置项</strong>两类，例如，<strong>基线配置项</strong>可能包括所有的<strong>设计文档和源程序</strong>等；<strong>非基线配置项</strong>可能包括<strong>项目的各类计划和报告</strong>等。</p>
+<p>所有配置项的操作权限应由CMO（配置管理员）严格管理，基本原则是：基线配置项向开发人员开放读取的权限；非基线配置项向PM、CCB及相关人员开放。</p>
+<h2 id="配置项状态"><a href="#配置项状态" class="headerlink" title="配置项状态"></a>配置项状态</h2><p>配置项的状态可分为**”草稿””正式”和”修改”<strong>三种。配置项</strong>刚建立时，其状态为 “草稿〞<strong>。配</strong>置项通过评审后，其状态变为“正式〞<strong>。此后若</strong>更改配置项，则其状态变为“修改<strong>〞。当</strong>配置项修改完毕并重新通过评审时，其状态又变为“正式”。**如图所示：</p>
+<p><img src="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/14_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/image-20240324163635829.png" alt="image-20240324163635829"></p>
+<p><strong>版本号一般的格式是 x.y.z</strong></p>
+<p><strong>其中，草稿状态时，也就是未发布过的状态，x是为0的，如0.12。</strong></p>
+<p><strong>正式发布之后，x就要大于0了，如1.1。</strong></p>
+<p><strong>x是大版本，y是小版本，z是修改状态，配置项在修改的时候，一般只增大z值，x和y不变，修改完毕后，状态成正式时，将z置为0，增加x或y的值。</strong></p>
+<h2 id="配置项版本管理"><a href="#配置项版本管理" class="headerlink" title="配置项版本管理"></a>配置项版本管理</h2><p>在项目开发过程中，绝大部分的配置项都要经过<strong>多次的修改才能最终确定</strong>下来。对配置项的<strong>任何修改都将产生新的版本</strong>。由于我们不能保证新版本一定比旧版本”好”，所以<strong>不能抛弃旧版本</strong>。版本管理的目的是<strong>按照一定的规则保存配置项的所有版本</strong>， 避免发生版本丢失或混淆等现象，并且<strong>可以快速准确地查找到配置项的任何版本。</strong></p>
+<h2 id="配置基线"><a href="#配置基线" class="headerlink" title="配置基线"></a>配置基线</h2><blockquote>
+<p>git代码分支管理中的master分支，就可以看作是一个基线。</p>
+</blockquote>
+<p><strong>配置基线（常简称为基线）</strong>由<strong>一组配置项组成</strong>，这些配置项<strong>构成一个相对稳定的逻辑实体</strong>。基线中的配置项被”冻结”了，<strong>不能再被任何人随意修改</strong>。对基线的变更必须遵循<strong>正式的变更控制程序</strong>。</p>
+<p>基线通常对应于开发过程中的<strong>里程碑</strong>，<strong>一个产品可以有多个基线，也可以只有一个基线</strong>。<strong>交付给外部顾客的基线一般称为发行基线（Release），内部开发使用的基线一般称为构造基线（Build）。</strong></p>
+<h1 id="质量管理"><a href="#质量管理" class="headerlink" title="质量管理"></a>质量管理</h1><p>质量是<strong>软件产品特性的综合</strong>，<strong>表示软件产品满足明确（基本需求）或隐含 （期望需求）要求的能力</strong>。质量管理是指确定质量方针、目标和职责，并通过质量体系中的质量计划、质量控制、质量保证和质量改进来使其实现的所有管理职能的全部活动；</p>
+<p>主要包括以下过程：</p>
+<p>（1）<strong>质量规划</strong>：识别项目及其产品的质量要求和标准，并书面描述项目将如何达到这些要求和标准的过程。</p>
+<p>（2）<strong>质量保证</strong>：一般是每隔一定时间（如每个阶段末）进行的，主要通过系统的质量审计（软件评审）和过程分析来保证项目的质量。</p>
+<p>（3）<strong>质量控制</strong>：实时监控项目的具体结果，以判断它们是否符合相关质量标准， 制订有效方案，以消除产生质量问题的原因。</p>
+<h2 id="质量的六大特性"><a href="#质量的六大特性" class="headerlink" title="*质量的六大特性"></a>*质量的六大特性</h2><p><strong>功能性</strong>：一组功能及其指定的性质有关的一组属性</p>
+<ul>
+<li>适合性</li>
+<li>准确性</li>
+<li>互用性</li>
+<li>依从性</li>
+<li>安全性</li>
+</ul>
+<p><strong>可靠性</strong>：在规定的一段时间和条件下，软件维持其性能水平有关的一组软件属性</p>
+<ul>
+<li>成熟性</li>
+<li>容错性</li>
+<li>易恢复性</li>
+</ul>
+<p><strong>可用性</strong>：使用的难易程度及规定或隐含用户对使用方式所做的评价有关的属性</p>
+<ul>
+<li>易理解性</li>
+<li>易学性</li>
+<li>易操作性</li>
+</ul>
+<p><strong>效率</strong>：在规定条件下，软件的性能水平和所用资源</p>
+<ul>
+<li>时间特性</li>
+<li>资源特性</li>
+</ul>
+<p><strong>可维护性</strong>：进行指定修改所需的努力</p>
+<ul>
+<li>易分析</li>
+<li>可修改性</li>
+<li>稳定性</li>
+<li>可测试性</li>
+</ul>
+<p><strong>可移植性</strong>：从一个环境移植到另外一个环境</p>
+<ul>
+<li>适应性</li>
+<li>可修改性</li>
+<li>可测试性</li>
+<li>易理解性</li>
+</ul>
+<h1 id="风险管理"><a href="#风险管理" class="headerlink" title="风险管理"></a>风险管理</h1>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/"># 系统分析师</a>
+                    
+                        <a href="/tags/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7/"># 软考高级</a>
+                    
+                        <a href="/tags/%E8%80%83%E8%AF%81/"># 考证</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/15_%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%8A%80%E6%9C%AF/">系统分析师：15_嵌入式技术</a>
+            
+            
+            <a class="next" rel="next" href="/2024/03/24/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88/13_%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%96%BD%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4/">系统分析师：13_系统实施与系统维护</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <!-- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+    <div class="copyright">
+        <!-- <span> welcome~</a></span> -->
+    </div>
+    <!-- 访问统计 -->
+    <!-- <div class="powered-by">
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+            welcome~ <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div> -->
+</footer>
+
+    </div>
+</body>
+</html>
