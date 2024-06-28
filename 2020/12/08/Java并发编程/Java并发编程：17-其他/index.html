@@ -43,7 +43,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 <!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
 <body>
     <div class="wrapper">
@@ -196,12 +196,12 @@
             <h2 id="并发调试"><a href="#并发调试" class="headerlink" title="并发调试"></a>并发调试</h2><h3 id="多线程调试的方法"><a href="#多线程调试的方法" class="headerlink" title="多线程调试的方法"></a>多线程调试的方法</h3><p>使用条件断点或异常断点</p>
 <h3 id="线程dump及分析"><a href="#线程dump及分析" class="headerlink" title="线程dump及分析"></a>线程dump及分析</h3><p>jstack 进程号<br>jstack -l 进程号 查看详细情况</p>
 <h2 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h2><p><a target="_blank" rel="noopener" href="http://blog.oneapm.com/apm-tech/226.html">http://blog.oneapm.com/apm-tech/226.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36951116/article/details/80296967">https://blog.csdn.net/qq_36951116/article/details/80296967</a></p>
-<p>将方法作为参数传递，类似于一种匿名函数<br>@FunctionalInterface 用这个注解标记<br>每个 Lambda 表达式都能隐式地赋值给函数式接口，例如，我们可以通过 Lambda 表达式创建 Runnable 接口的引用。<br>Runnable r = () -&gt; System.out.println(“hello world”);<br>当不指明函数式接口时，编译器会自动解释这种转化：<br>new Thread(<br>() -&gt; System.out.println(“hello world”)<br>).start();</p>
+<p>将方法作为参数传递，类似于一种匿名函数<br>@FunctionalInterface 用这个注解标记<br>每个 Lambda 表达式都能隐式地赋值给函数式接口，例如，我们可以通过 Lambda 表达式创建 Runnable 接口的引用。<br>Runnable r &#x3D; () -&gt; System.out.println(“hello world”);<br>当不指明函数式接口时，编译器会自动解释这种转化：<br>new Thread(<br>() -&gt; System.out.println(“hello world”)<br>).start();</p>
 <p>new Thread(()-&gt;System.out.print(1)).start();</p>
 <p>t(new WorkerInterface() {<br>public String doSomework(String s) {<br>    return s;<br>}<br>});</p>
 <p>t((String s) -&gt; {<br>    return s;<br>});</p>
 <p>简写： t(s -&gt; s);</p>
-<p>以下是一些 Lambda 表达式及其函数式接口：<br>Consumer<Integer>  c = (int x) -&gt; { System.out.println(x) };<br>BiConsumer&lt;Integer, String&gt; b = (Integer x, String y) -&gt; System.out.println(x + “ : “ + y);<br>Predicate<String> p = (String s) -&gt; { s == null };</p>
+<p>以下是一些 Lambda 表达式及其函数式接口：<br>Consumer<Integer>  c &#x3D; (int x) -&gt; { System.out.println(x) };<br>BiConsumer&lt;Integer, String&gt; b &#x3D; (Integer x, String y) -&gt; System.out.println(x + “ : “ + y);<br>Predicate<String> p &#x3D; (String s) -&gt; { s &#x3D;&#x3D; null };</p>
 <h2 id="JDK8对并发的新支持"><a href="#JDK8对并发的新支持" class="headerlink" title="JDK8对并发的新支持"></a>JDK8对并发的新支持</h2><h3 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h3><p>读写锁的改进，之前的ReadWriteLock是读写互斥的，StampedLock在读写互斥上做了改进<br>读写互斥时，在读线程比较多而写线程比较少的情况下，写线程容易发生饥饿现象，导致一直写不进去<br>StampedLock的读可以不阻塞写，读线程在 读取后返回前的时候，写线程完成了数据修改，则读线程需要重新读取<br>锁内部维护了一个等待线程队列，所有申请锁，但是没成功的线程都记录在这个队列中，每个节点都有一个标记位，判断当前节点是否已经释放锁<br>当一个线程试图获取锁时，会判断当前等待队列尾部节点的标记位是否已经成功释放锁</p>
 <h3 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h3><p>工具类，实现了CompletionStage，Java8中对Future的增强，可以流式调用</p>
 <h2 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁（<strong>共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程</strong>）。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。Java中<code>synchronized</code>和<code>ReentrantLock</code>等独占锁就是悲观锁思想的实现。</p>
@@ -217,12 +217,12 @@
 <h4 id="1-版本号机制"><a href="#1-版本号机制" class="headerlink" title="1. 版本号机制"></a><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/essential-content-for-interview/%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E4%B9%8B%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81?id=_1-%E7%89%88%E6%9C%AC%E5%8F%B7%E6%9C%BA%E5%88%B6">1. 版本号机制</a></h4><p>一般是在数据表中加上一个数据版本号version字段，表示数据被修改的次数，当数据被修改时，version值会加一。当线程A要更新数据值时，在读取数据的同时也会读取version值，在提交更新时，若刚才读取到的version值为当前数据库中的version值相等时才更新，否则重试更新操作，直到更新成功。</p>
 <p><strong>举一个简单的例子：</strong> 假设数据库中帐户信息表中有一个 version 字段，当前值为 1 ；而当前帐户余额字段（ balance ）为 $100 。</p>
 <ol>
-<li>操作员 A 此时将其读出（ version=1 ），并从其帐户余额中扣除 $50（ $100-$50 ）。</li>
-<li>在操作员 A 操作的过程中，操作员B 也读入此用户信息（ version=1 ），并从其帐户余额中扣除 $20 （ $100-$20 ）。</li>
-<li>操作员 A 完成了修改工作，将数据版本号加一（ version=2 ），连同帐户扣除后余额（ balance=$50 ），提交至数据库更新，此时由于提交数据版本大于数据库记录当前版本，数据被更新，数据库记录 version 更新为 2 。</li>
-<li>操作员 B 完成了操作，也将版本号加一（ version=2 ）试图向数据库提交数据（ balance=$80 ），但此时比对数据库记录版本时发现，操作员 B 提交的数据版本号为 2 ，数据库记录当前版本也为 2 ，不满足 “ 提交版本必须大于记录当前版本才能执行更新 “ 的乐观锁策略，因此，操作员 B 的提交被驳回。</li>
+<li>操作员 A 此时将其读出（ version&#x3D;1 ），并从其帐户余额中扣除 $50（ $100-$50 ）。</li>
+<li>在操作员 A 操作的过程中，操作员B 也读入此用户信息（ version&#x3D;1 ），并从其帐户余额中扣除 $20 （ $100-$20 ）。</li>
+<li>操作员 A 完成了修改工作，将数据版本号加一（ version&#x3D;2 ），连同帐户扣除后余额（ balance&#x3D;$50 ），提交至数据库更新，此时由于提交数据版本大于数据库记录当前版本，数据被更新，数据库记录 version 更新为 2 。</li>
+<li>操作员 B 完成了操作，也将版本号加一（ version&#x3D;2 ）试图向数据库提交数据（ balance&#x3D;$80 ），但此时比对数据库记录版本时发现，操作员 B 提交的数据版本号为 2 ，数据库记录当前版本也为 2 ，不满足 “ 提交版本必须大于记录当前版本才能执行更新 “ 的乐观锁策略，因此，操作员 B 的提交被驳回。</li>
 </ol>
-<p>这样，就避免了操作员 B 用基于 version=1 的旧数据修改的结果覆盖操作员A 的操作结果的可能。</p>
+<p>这样，就避免了操作员 B 用基于 version&#x3D;1 的旧数据修改的结果覆盖操作员A 的操作结果的可能。</p>
 <h4 id="2-CAS算法"><a href="#2-CAS算法" class="headerlink" title="2. CAS算法"></a><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/essential-content-for-interview/%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E4%B9%8B%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81?id=_2-cas%E7%AE%97%E6%B3%95">2. CAS算法</a></h4><p>即<strong>compare and swap（比较与交换）</strong>，是一种有名的<strong>无锁算法</strong>。无锁编程，即不使用锁的情况下实现多线程之间的变量同步，也就是在没有线程被阻塞的情况下实现变量的同步，所以也叫非阻塞同步（Non-blocking Synchronization）。<strong>CAS算法</strong>涉及到三个操作数</p>
 <ul>
 <li>需要读写的内存值 V</li>
@@ -271,7 +271,7 @@
                 <a class="prev" rel="prev" href="/2020/12/08/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9A16-ThreadLocal%E6%B5%85%E6%9E%90/">Java并发编程：16-ThreadLocal浅析</a>
             
             
-            <a class="next" rel="next" href="/2020/12/08/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9A12-%E5%90%8C%E6%AD%A5%E5%AE%B9%E5%99%A8%E5%92%8C%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/">Java并发编程：12-同步容器和并发容器</a>
+            <a class="next" rel="next" href="/2020/12/08/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9A14-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java并发编程：14-多线程设计模式</a>
             
         </section>
 

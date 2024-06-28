@@ -43,7 +43,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 <!-- <a target="_blank" rel="noopener" href="https://github.com/networkcv" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style> -->
 <body>
     <div class="wrapper">
@@ -202,10 +202,10 @@
 </ul>
 <h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><p>网络层负责在不同网络间转发数据包 基于数据包的IP地址转发<br>路由器是网络层设备，数据包一般不超过1500字节<br>路由器属于三层设备，它在交换机功能的基础上增加 通过ip地址查询路由表来寻找下一跳 然后 封装数据帧 转换比特流传输<br>不负责丢失重传 不负责顺序<br>ip地址决定起始位置和结束位置，mac地址决定下一跳是谁 </p>
 <p>数据发送过程 </p>
-<p><img src="http://pic.networkcv.top//network/20200503/3XcxWdxjgCrp.jpg?imageslim" alt="mark"><br>TCP/IP协议栈</p>
+<p><img src="http://pic.networkcv.top//network/20200503/3XcxWdxjgCrp.jpg?imageslim" alt="mark"><br>TCP&#x2F;IP协议栈</p>
 <p> <img src="http://pic.networkcv.top//network/20200503/LN0tusHwGJEC.jpg?imageslim" alt="mark"></p>
-<h4 id="TCP-IP协议栈"><a href="#TCP-IP协议栈" class="headerlink" title="TCP/IP协议栈"></a>TCP/IP协议栈</h4><p><strong>ARP协议：</strong>将IP地址解析为物理MAC地址<br>将IP地址通过广播 目标MAC地址是FF-FF-FF-FF-FF-FF 解析目标IP地址的MAC地址<br>是数据通信之前的协议，为IP协议提供服务，通过发送广播包，获取对方的mac地址<br>如果是跨网段传输则 获取路由器mac地址，获取对方mac地址后缓存，下次可以直接使用</p>
-<p>查看ARP缓存的mac地址 arp -a<br>手动设置ARP地址 arp -s 192.168.1.100 D4-6D-6D-C0-4B-4E<br>查询mac地址    ipconfig /all</p>
+<h4 id="TCP-IP协议栈"><a href="#TCP-IP协议栈" class="headerlink" title="TCP&#x2F;IP协议栈"></a>TCP&#x2F;IP协议栈</h4><p><strong>ARP协议：</strong>将IP地址解析为物理MAC地址<br>将IP地址通过广播 目标MAC地址是FF-FF-FF-FF-FF-FF 解析目标IP地址的MAC地址<br>是数据通信之前的协议，为IP协议提供服务，通过发送广播包，获取对方的mac地址<br>如果是跨网段传输则 获取路由器mac地址，获取对方mac地址后缓存，下次可以直接使用</p>
+<p>查看ARP缓存的mac地址 arp -a<br>手动设置ARP地址 arp -s 192.168.1.100 D4-6D-6D-C0-4B-4E<br>查询mac地址    ipconfig &#x2F;all</p>
 <p>网络执法官：通过arp欺骗，回应错误mac地址，实现中断设备间通讯<br>p2p终结者：通过arp欺骗网关地址，实现局域网内部的流量控制</p>
 <p>gpedit.msc 设置windows 启动脚本</p>
 <p><strong>IP协议：</strong>负责给数据包选择路径 配置路由表 有以下协议可以使用 RIP OSPF </p>
@@ -220,10 +220,10 @@
 <ul>
 <li>点到点  可以调整视频进度，类似于</li>
 <li>广播   类似于学校机房，教师广播自己屏幕</li>
-<li>组播/多播   在发送方和接收方绑上对应的多播地址 类似于直播或电视里边的频道，计算机需要观看时，在网上上添加对应的多播地址即可</li>
+<li>组播&#x2F;多播   在发送方和接收方绑上对应的多播地址 类似于直播或电视里边的频道，计算机需要观看时，在网上上添加对应的多播地址即可</li>
 </ul>
 <h4 id="IP数据包结构"><a href="#IP数据包结构" class="headerlink" title="IP数据包结构"></a>IP数据包结构</h4><p><strong>IP数据包组成</strong><br>一个IP数据包由首部和数据两部分组成<br><img src="http://pic.networkcv.top//network/20200503/xqpa0wF3OR1M.jpg?imageslim" alt="mark"><br>首部前一部分是固定长度的，共20字节，是所有ip数据包所必须具有的<br>在首部的固定部分的后面是一些可选字段，其长度是可变的</p>
-<p><strong>IP数据包首部详情</strong><br><img src="http://pic.networkcv.top//network/20200503/f3N3kt1Q9VLJ.jpg?imageslim" alt="mark"><br><strong>版本：</strong>用来表示 TCP/IP协议的版本 4或者6<br><strong>首部长度：</strong>用来分割首部和数据部分，如果首部是20byte的话，则没有可选字段<br><strong>区分服务：</strong>相当于数据包的优先级，优先级高的数据包优先转发，如优先级为12<br><strong>总长度：</strong>2个byte共16位，最大可以表示2^16-1 65535个字节  </p>
+<p><strong>IP数据包首部详情</strong><br><img src="http://pic.networkcv.top//network/20200503/f3N3kt1Q9VLJ.jpg?imageslim" alt="mark"><br><strong>版本：</strong>用来表示 TCP&#x2F;IP协议的版本 4或者6<br><strong>首部长度：</strong>用来分割首部和数据部分，如果首部是20byte的话，则没有可选字段<br><strong>区分服务：</strong>相当于数据包的优先级，优先级高的数据包优先转发，如优先级为12<br><strong>总长度：</strong>2个byte共16位，最大可以表示2^16-1 65535个字节  </p>
 <ul>
 <li>数据链路层 数据帧中的数据（由首部和数据部分组成）最大为1500字节 最大传输单元 MTU</li>
 <li>数据包大于1500字节时（一般不会），数据链路层会对其进行分片传输，每片最多1500字节,除去首部最少占用的20个字节，数据部分最多1480字节</li>
@@ -240,9 +240,12 @@
 </ul>
 <p><strong>首部检验和：</strong>  对首部的数据进行检验，若结果为0，则保留，否则丢弃<br><img src="http://pic.networkcv.top//network/20200503/xoFpSQEQeNxv.jpg?imageslim" alt="mark"></p>
 <p><strong>源IP地址：</strong>  占32位<br><strong>目标IP地址：</strong>  占32位</p>
-<h4 id="路由器网关配置命令"><a href="#路由器网关配置命令" class="headerlink" title="路由器网关配置命令"></a>路由器网关配置命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;enable</span><br><span class="line">Router#configure terminal</span><br><span class="line">Router(config)#interface fastEthernet 0&#x2F;0</span><br><span class="line">Router(config-if)#ip address 192.168.0.1 255.255.255.0</span><br><span class="line">Router(config-if)#no  shutdown</span><br></pre></td></tr></table></figure>
-<h4 id="路由器广域网口配置"><a href="#路由器广域网口配置" class="headerlink" title="路由器广域网口配置"></a>路由器广域网口配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;en</span><br><span class="line">Router#config t</span><br><span class="line">Router(config)#interface  serial 2&#x2F;0</span><br><span class="line">Router(config-if)#clock rate ?</span><br><span class="line">Speed (bits per second</span><br><span class="line">1200           </span><br><span class="line">56000          </span><br><span class="line">64000          </span><br><span class="line">Router(config-if)#clock rate 64000</span><br><span class="line">Router(config-if)#ip address 172.16.0.1 255.255.255.0</span><br><span class="line">Router(config-if)#no sh</span><br></pre></td></tr></table></figure>
-<h4 id="查看-添加静态ip路由表命令"><a href="#查看-添加静态ip路由表命令" class="headerlink" title="查看/添加静态ip路由表命令"></a>查看/添加静态ip路由表命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Router#show ip route</span><br><span class="line">Router#config t</span><br><span class="line">Router(config)#ip route 192.168.1.0 255.255.255.0 172.16.0.2   配置静态路由  </span><br></pre></td></tr></table></figure>
+<h4 id="路由器网关配置命令"><a href="#路由器网关配置命令" class="headerlink" title="路由器网关配置命令"></a>路由器网关配置命令</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;enable</span><br><span class="line">Router#configure terminal</span><br><span class="line">Router(config)#interface fastEthernet 0/0</span><br><span class="line">Router(config-if)#ip address 192.168.0.1 255.255.255.0</span><br><span class="line">Router(config-if)#no  shutdown</span><br></pre></td></tr></table></figure>
+
+<h4 id="路由器广域网口配置"><a href="#路由器广域网口配置" class="headerlink" title="路由器广域网口配置"></a>路由器广域网口配置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;en</span><br><span class="line">Router#config t</span><br><span class="line">Router(config)#interface  serial 2/0</span><br><span class="line">Router(config-if)#clock rate ?</span><br><span class="line">Speed (bits per second</span><br><span class="line">1200           </span><br><span class="line">56000          </span><br><span class="line">64000          </span><br><span class="line">Router(config-if)#clock rate 64000</span><br><span class="line">Router(config-if)#ip address 172.16.0.1 255.255.255.0</span><br><span class="line">Router(config-if)#no sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看-添加静态ip路由表命令"><a href="#查看-添加静态ip路由表命令" class="headerlink" title="查看&#x2F;添加静态ip路由表命令"></a>查看&#x2F;添加静态ip路由表命令</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Router#show ip route</span><br><span class="line">Router#config t</span><br><span class="line">Router(config)#ip route 192.168.1.0 255.255.255.0 172.16.0.2   配置静态路由  </span><br></pre></td></tr></table></figure>
+
 <h4 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h4><p>需要管理员告诉路由器所有没有直连的网络下一跳给谁<br>静态路由的缺点 适合于小规模网络 不能自动调整路由</p>
 <h4 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h4><p><strong>RIP协议</strong><br>周期性广播路由表给其他路由器 根据跳数少选择最佳路径 30s更新一次 最大跳数 15跳 不适合网络规模比较大的环境</p>
 <p><strong>配置RIP协议命令</strong>  </p>
